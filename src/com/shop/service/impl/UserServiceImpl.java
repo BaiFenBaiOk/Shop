@@ -1,8 +1,13 @@
 package com.shop.service.impl;
 
 import com.shop.mapper.UserMapper;
+import com.shop.pojo.GoodType;
+import com.shop.pojo.Goods;
 import com.shop.pojo.User;
 import com.shop.service.UserService;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
@@ -19,4 +24,34 @@ public class UserServiceImpl implements UserService {
     	System.out.println(user.toString());
         return userMapper.getLogin(user);
     }
+
+	@Override
+	public void userRegist(User user) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void userAction(User user) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<GoodType> menu() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Goods> goodsList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Goods getGood(Goods good) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
