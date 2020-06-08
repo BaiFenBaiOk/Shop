@@ -13,7 +13,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 @Service
-@Repository("userService")
 public class UserServiceImpl implements UserService {
 
     @Autowired
@@ -26,15 +25,15 @@ public class UserServiceImpl implements UserService {
     }
 
 	@Override
-	public void userRegist(User user) {
-		// TODO Auto-generated method stub
-		
+	public void saveUser(User user) {
+		System.out.println(user.toString());
+		userMapper.saveUser(user);
 	}
 
 	@Override
-	public void userAction(User user) {
+	public void saveActive(String code) {
 		// TODO Auto-generated method stub
-		
+		userMapper.saveActive(code);
 	}
 
 	@Override

@@ -7,10 +7,12 @@
 <title>用户登录</title>
 </head>
 <body>
-<form action="${pageContext.request.contextPath }/user/login.action" method="post">
+<form action="${pageContext.request.contextPath }/user/regist.action" method="post">
 用户名：<input type="text" name="username" /><br>
 密码：<input type="text" name="password" /><br>
-<input type="submit" value="登录">
+邮箱：<input type="text" name="email" /><br>
+
+<input type="submit" value="注册">
 </form>
 </body>
 </html>

@@ -10,9 +10,9 @@ public interface UserService {
 	//登录
     User getLogin(User user);
     //注册
-    void userRegist(User user);
+    void saveUser(User user);
     //激活
-    void userAction(User user);
+    void saveActive(String code);
     //菜单（导航条）
     List<GoodType> menu();
     //商品列表

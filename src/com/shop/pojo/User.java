@@ -1,6 +1,10 @@
 package com.shop.pojo;
 
 public class User {
+	private static User user=new User();
+	public static User getUser() {
+		return user;
+	}
 	private String uid;
 	private String username;
 	private String password;
@@ -11,6 +15,7 @@ public class User {
 	private String code;
 	private String state;
 	private Integer type;
+	
 	public String getUid() {
 		return uid;
 	}
@@ -77,6 +82,5 @@ public class User {
 				+ sex + ", iphone=" + iphone + ", email=" + email + ", code=" + code + ", state=" + state + ", type="
 				+ type + "]";
 	}
-
 	
 }

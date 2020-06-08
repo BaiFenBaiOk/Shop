@@ -3,6 +3,10 @@ package com.shop.pojo;
 import java.sql.Date;
 
 public class Order {
+	private static Order order=new Order();
+	public static Order getOrder() {
+		return order;
+	}
 	private String id;
 	private String oId;
 	private String uId;

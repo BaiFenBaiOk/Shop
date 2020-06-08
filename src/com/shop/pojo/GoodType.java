@@ -1,6 +1,10 @@
 package com.shop.pojo;
 
 public class GoodType {
+	private static GoodType goodType=new GoodType();
+	public static GoodType getGoodType() {
+		return goodType;
+	}
 	private String goodId;
 	private String goodName;
 	public String getGoodId() {

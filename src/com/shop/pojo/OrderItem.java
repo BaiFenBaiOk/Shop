@@ -1,6 +1,10 @@
 package com.shop.pojo;
 
 public class OrderItem {
+	private static OrderItem orderItem=new OrderItem();
+	public static OrderItem getOrderItemr() {
+		return orderItem;
+	}
 	private String oId;
 	private String gId;
 	private String uId;

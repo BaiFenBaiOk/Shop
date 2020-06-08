@@ -17,5 +17,45 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			FROM `user`
 		where username = "${username}" and password = "${password}"
 	</select>
-
+	
+	<insert id="saveUser" parameterType="user">
+		<selectKey keyProperty="uid" resultType="string" order="BEFORE">
+			SELECT UUID()
+		</selectKey>
+		INSERT INTO `user` 
+			(`uid`, 
+			`username`, 
+			`password`, 
+			`age`, 
+			`sex`, 
+			`iphone`, 
+			`email`, 
+			`code`, 
+			`state`, 
+			`type`
+			)
+			VALUES
+			(#{uid}, 
+			#{username}, 
+			#{password}, 
+			#{age}, 
+			#{sex}, 
+			#{iphone}, 
+			#{email}, 
+			#{code}, 
+			#{state}, 
+			#{type}
+			);
+				
+	</insert>
+	
+	<update id="saveActive" parameterType="string">
+		UPDATE `user` 
+			SET
+			`state` = "1",
+			`code` = null
+			WHERE
+			`code` = #{state};
+		
+	</update>
 </mapper>
