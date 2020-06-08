@@ -58,4 +58,56 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			`code` = #{state};
 		
 	</update>
+	
+	<select id="findAllUser" resultType="user">
+		SELECT 	`uid`, 
+			`username`, 
+			`password`, 
+			`age`, 
+			`sex`, 
+			`iphone`, 
+			`email`, 
+			`code`, 
+			`state`, 
+			`type`
+	 
+			FROM 
+			`user` 	
+	</select>
+	
+	<select id="findUserByUid" parameterType="user" resultType="user">
+		SELECT 	`uid`, 
+			`username`, 
+			`password`, 
+			`age`, 
+			`sex`, 
+			`iphone`, 
+			`email`, 
+			`code`, 
+			`state`, 
+			`type`
+	 
+			FROM 
+			`user` 
+			WHERE
+			`uid` = #{uid};	
+	</select>
+	
+	<update id="saveUserByUid" parameterType="user">
+				UPDATE `user` 
+			SET
+			`uid` = #{uid} , 
+			`username` = #{username} , 
+			`age` = #{age}, 
+			`sex` = #{sex} , 
+			`iphone` = #{iphone} , 
+			`email` = #{email} , 
+			`code` = #{code} , 
+			`state` = #{state} , 
+			`type` = #{type}
+			
+			WHERE
+			`uid` = #{uid} ;
+		
+	</update>
 </mapper>

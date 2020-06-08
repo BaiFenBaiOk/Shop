@@ -13,6 +13,12 @@ public interface UserService {
     void saveUser(User user);
     //激活
     void saveActive(String code);
+    
+    List<User> findAllUser();
+    
+    User findUserByUid(User user);
+    
+    void saveUserByUid(User user);
     //菜单（导航条）
     List<GoodType> menu();
     //商品列表

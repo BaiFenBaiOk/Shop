@@ -5,12 +5,29 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>用户登录</title>
+<link rel="stylesheet" href="css/login.css" >
+<script src="js/jQuery3.4.1.js"></script>
 </head>
 <body>
-<form action="${pageContext.request.contextPath }/user/login.action" method="post">
-用户名：<input type="text" name="username" /><br>
-密码：<input type="text" name="password" /><br>
-<input type="submit" value="登录">
-</form>
+
+
+<form  class="login-form" action="${pageContext.request.contextPath }/user/login.action" method="post">
+			<h1>登录</h1>
+			
+			<div class="txtb">
+				<input type="text" name="username">
+				Username:<span data-placeholder = "Username" ></span>
+			</div>
+			<div class="txtb">
+				<input type="password" name="password">
+				Password:<span data-placeholder="Password" ></span>
+			</div>
+			<input type="submit" class="logbtn" value="Login">
+			
+			<div class="bottom-text">
+				Don't have a account? <a href="regist.html">Sign up</a>
+			</div>
+		</form>
+
 </body>
 </html>

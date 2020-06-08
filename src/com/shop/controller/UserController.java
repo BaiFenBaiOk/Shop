@@ -11,6 +11,7 @@ import cn.itcast.mail.MailUtils;
 
 import java.io.IOException;
 import java.text.MessageFormat;
+import java.util.List;
 import java.util.Properties;
 
 import javax.mail.MessagingException;
@@ -20,6 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/user")
@@ -33,10 +35,13 @@ public class UserController {
         User user1 = userService.getLogin(user);
         if(user1 == null){
 			throw new MyException("查无此人~~~");
-		}else if(user1.getState()!="1"){
+		}else if(user1.getState()=="0"){
 			throw new MyException("该账户未激活~~~");
 		}else{
-			return "null";
+			if(user1.getType() == 0)
+			return "home";
+			else
+				return "null";
 		}
     }
     
@@ -87,5 +92,32 @@ public class UserController {
     	System.out.println(code);
     	userService.saveActive(code);
     	return "login";
+    }
+
+    @RequestMapping("homeLoginUser")
+    public String homeLogin(Model model) throws MyException{
+    	List<User> user = userService.findAllUser();
+    	for(User user1:user) {
+    		System.out.println(user1.toString());
+    	}
+		  model.addAttribute("user", user); 
+		  return "user";
+		 
+    }
+    
+    @RequestMapping("edit_user")
+    public String edit_user(User user,Model model) throws MyException{
+    	User user1 = userService.findUserByUid(user);
+    	System.out.println(user1);
+    	model.addAttribute("user", user1);
+		  return "edit_user";
+		 
+    }
+    @RequestMapping("edit_userByUid")
+    public String edit_userByUid(User user) throws MyException{
+    	userService.saveUserByUid(user);
+    	System.out.println(user.toString());
+		  return "home";
+		 
     }
 }

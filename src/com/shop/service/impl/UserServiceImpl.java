@@ -53,4 +53,20 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public List<User> findAllUser() {
+		// TODO Auto-generated method stub
+		return userMapper.findAllUser();
+	}
+
+	@Override
+	public User findUserByUid(User user) {
+		return userMapper.findUserByUid(user);
+	}
+
+	@Override
+	public void saveUserByUid(User user) {
+		userMapper.saveUserByUid(user);
+	}
 }
