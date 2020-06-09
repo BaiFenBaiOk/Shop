@@ -11,4 +11,5 @@ public interface UserMapper {
 	List<User> findAllUser();
 	User findUserByUid(User user);
 	 void saveUserByUid(User user);
+	 List<User> findAllUsers(int page,int size);
 }

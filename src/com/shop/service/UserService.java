@@ -15,6 +15,7 @@ public interface UserService {
     void saveActive(String code);
     
     List<User> findAllUser();
+    List<User> findAllUsers(int page,int size);
     
     User findUserByUid(User user);
     

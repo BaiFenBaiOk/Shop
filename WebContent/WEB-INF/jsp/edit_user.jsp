@@ -146,7 +146,7 @@
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img src="../img/user2-160x160.jpg" class="user-image" alt="User Image">
-                        <span class="hidden-xs">张猿猿</span>
+                        <span class="hidden-xs">${user.username }</span>
                     </a>
                             <ul class="dropdown-menu">
                                 <!-- User image -->
@@ -154,7 +154,7 @@
                                     <img src="../img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                                     <p>
-                                        张猿猿 - 数据管理员
+                                        ${user.username } - 数据管理员
                                         <small>最后登录 11:20AM</small>
                                     </p>
                                 </li>
@@ -178,7 +178,7 @@
                                         <a href="#" class="btn btn-default btn-flat">修改密码</a>
                                     </div>
                                     <div class="pull-right">
-                                        <a href="#" class="btn btn-default btn-flat">注销</a>
+                                        <a href="${pageContext.request.contextPath }/user/outLoginUser.action" class="btn btn-default btn-flat">注销</a>
                                     </div>
                                 </li>
                             </ul>
@@ -200,7 +200,7 @@
                         <img src="../img/user2-160x160.jpg" class="img-circle" alt="User Image">
                     </div>
                     <div class="pull-left info">
-                        <p>张猿猿</p>
+                        <p>${user.username }</p>
                         <a href="#"><i class="fa fa-circle text-success"></i> 在线</a>
                     </div>
                 </div>
@@ -410,7 +410,7 @@
             <div class="pull-right hidden-xs">
                 <b>Version</b> 1.0.8
             </div>
-            <strong>Copyright &copy; 2014-2017 <a href="http://www.itcast.cn">研究院研发部</a>.</strong> All rights reserved.
+            <strong>Copyright &copy; 2020-2020 <a href="http://www.itcast.cn">富豪榜</a>.</strong> All rights reserved.
         </footer>
         <!-- 底部导航 /-->
 

@@ -1,5 +1,7 @@
 package com.shop.controller;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.shop.exception.ExceptionFactory;
 import com.shop.exception.MyException;
 import com.shop.pojo.User;
@@ -16,12 +18,15 @@ import java.util.Properties;
 
 import javax.mail.MessagingException;
 import javax.mail.Session;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/user")
@@ -31,15 +36,16 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping("login")
-    public String login(User user) throws MyException{
+    public String login(User user,Model model) throws MyException{
         User user1 = userService.getLogin(user);
         if(user1 == null){
 			throw new MyException("查无此人~~~");
 		}else if(user1.getState()=="0"){
 			throw new MyException("该账户未激活~~~");
 		}else{
-			if(user1.getType() == 0)
-			return "home";
+			if(user1.getType() == 0) {
+				model.addAttribute("user", user1);
+			return "home";}
 			else
 				return "null";
 		}
@@ -94,15 +100,38 @@ public class UserController {
     	return "login";
     }
 
+	/*
+	 * @RequestMapping("homeLoginUser") public String homeLogin(Model model) throws
+	 * MyException{
+	 * 
+	 * //PageHelper.startPage(1, 4); List<User> user = userService.findAllUser();
+	 * for(User user1:user) { System.out.println(user1.toString()); }
+	 * model.addAttribute("user", user); return "user";
+	 * 
+	 * }
+	 */
+    
+	/*
+	 * @RequestMapping("homeLoginUser") public ModelAndView
+	 * homeLogin(@RequestParam(name="page",required = true,defaultValue = "1") int
+	 * page,@RequestParam(name="size",required = true,defaultValue = "4") int size)
+	 * throws MyException{ ModelAndView mv =new ModelAndView(); List<User> user =
+	 * userService.findAllUsers(page,size); PageInfo pageInfo = new
+	 * PageInfo(user,4); mv.addObject("pageInfo",pageInfo); mv.setViewName("user1");
+	 * return mv;
+	 * 
+	 * }
+	 */
+   
     @RequestMapping("homeLoginUser")
-    public String homeLogin(Model model) throws MyException{
-    	List<User> user = userService.findAllUser();
-    	for(User user1:user) {
-    		System.out.println(user1.toString());
-    	}
-		  model.addAttribute("user", user); 
-		  return "user";
-		 
+    public ModelAndView findAll(@RequestParam(name = "page", required = true, defaultValue = "1") int page, @RequestParam(name = "size", required = true, defaultValue = "4") int size) throws Exception {
+        ModelAndView mv = new ModelAndView();
+        List<User> user = userService.findAllUsers(page, size);
+        //PageInfo就是一个分页Bean
+        PageInfo pageInfo=new PageInfo(user);
+        mv.addObject("pageInfo",pageInfo);
+        mv.setViewName("user1");
+        return mv;
     }
     
     @RequestMapping("edit_user")
@@ -119,5 +148,17 @@ public class UserController {
     	System.out.println(user.toString());
 		  return "home";
 		 
+    }
+    
+    @RequestMapping("outLoginUser")
+    public String outLoginUser(String code) throws MyException{
+    	
+    	return "login";
+    }
+    
+    @RequestMapping("updataUser")
+    public String updataUser(String uid) throws MyException{
+
+    	return "login";
     }
 }

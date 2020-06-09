@@ -1,5 +1,6 @@
 package com.shop.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.shop.mapper.UserMapper;
 import com.shop.pojo.GoodType;
 import com.shop.pojo.Goods;
@@ -68,5 +69,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void saveUserByUid(User user) {
 		userMapper.saveUserByUid(user);
+	}
+
+	@Override
+	public List<User> findAllUsers(int page, int size) {
+		PageHelper.startPage(page, size);
+		return userMapper.findAllUser();
 	}
 }
