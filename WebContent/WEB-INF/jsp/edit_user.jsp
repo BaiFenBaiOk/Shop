@@ -221,7 +221,7 @@
                 <ul class="sidebar-menu">
                     <li class="header">菜单</li>
 
-                    <li id="admin-index"><a href="all-admin-index.html"><i class="fa fa-dashboard"></i> <span>首页</span></a></li>
+                    <li id="admin-index"><a href="${pageContext.request.contextPath }/user/outLoginUser.action"><i class="fa fa-dashboard"></i> <span>首页</span></a></li>
 
                     <!-- 菜单 -->
 
@@ -311,7 +311,7 @@
                 <!--游客信息-->
                 <form action="${pageContext.request.contextPath }/user/edit_userByUid.action" method="post" id="edit_userByUid">
                 <div class="panel panel-default">
-                    <div class="panel-heading">游客信息</div>
+                    <div class="panel-heading">用户信息</div>
                     <!--数据列表-->
                     <table id="dataList" class="table table-bordered table-striped table-hover dataTable">
                         <thead>

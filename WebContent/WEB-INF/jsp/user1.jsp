@@ -113,18 +113,7 @@
     <link rel="stylesheet" href="../plugins/ionslider/ion.rangeSlider.skinNice.css">
     <link rel="stylesheet" href="../plugins/bootstrap-slider/slider.css">
     <link rel="stylesheet" href="../plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.css">
-    <script type="text/javascript">
-
-	/* function doDelete() {
-		$("#uid").
-		var name = $("#name").val();
-		var flag = confirm("是否确定删除?");
-		if(flag){
-			
-			location.href="${pageContext.request.contextPath }/user/deleteUser.action?uid="+uid;
-		}
-	} */
-</script>
+    
 </head>
 
 <body class="hold-transition skin-purple sidebar-mini">
@@ -373,7 +362,7 @@
 
 							<c:forEach items="${pageInfo.list}" var="c">
                                     <tr>
-                                        <td><input name="uid" id="uid" type="checkbox" value="${c.uid}"></td>
+                                        <td><input name="uid" type="checkbox" value="${c.uid}"></td>
                                         <td>${c.uid}</td>
                                         <td>${c.username}</td>
                                         <td>${c.age}</td>

@@ -348,7 +348,7 @@
 
                 <!--游客信息-->
                 <div class="panel panel-default">
-                    <div class="panel-heading">游客信息</div>
+                    <div class="panel-heading">用户信息</div>
                     <!--数据列表-->
                     <table id="dataList" class="table table-bordered table-striped table-hover dataTable">
                         <thead>

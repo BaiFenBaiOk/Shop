@@ -305,7 +305,7 @@
 
             <!-- 正文区域 -->
             <section class="content">
-
+				
                 <!-- .box-body -->
                 <div class="box box-primary">
                     <div class="box-header with-border">
@@ -322,7 +322,7 @@
                                 <div class="form-group form-inline">
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-default" title="新建" onclick='location.href="all-order-manage-edit.html"'><i class="fa fa-file-o"></i> 新建</button>
-                                        <button type="button" class="btn btn-default" title="删除" onclick='confirm("你确认要删除吗？")'><i class="fa fa-trash-o"></i> 删除</button>
+                                        <button type="submit" class="btn btn-default" value="删除"  form="delete_userByUid"><i class="fa fa-trash-o"></i> 删除</button>
                                         <button type="button" class="btn btn-default" title="开启" onclick='confirm("你确认要开启吗？")'><i class="fa fa-check"></i> 开启</button>
                                         <button type="button" class="btn btn-default" title="屏蔽" onclick='confirm("你确认要屏蔽吗？")'><i class="fa fa-ban"></i> 屏蔽</button>
                                         <button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();"><i class="fa fa-refresh"></i> 刷新</button>
@@ -336,13 +336,13 @@
                                 </div>
                             </div>
                             <!--工具栏/-->
-
+							<form action="${pageContext.request.contextPath }/user/delete_userByUid.action" method="post" id="delete_userByUid">
                             <!--数据列表-->
                             <table id="dataList" class="table table-bordered table-striped table-hover dataTable">
                                 <thead>
                                     <tr>
                                         <th class="" style="padding-right:0px;">
-                                            <input id="selall" type="checkbox" class="icheckbox_square-blue">
+                                            <input name="uid" id="selall" type="checkbox" class="icheckbox_square-blue">
                                         </th>
                                         <th class="sorting_asc">UID</th>
                                         <th class="sorting">姓名</th>
@@ -360,7 +360,7 @@
 
 							<c:forEach items="${user}" var="c">
                                     <tr>
-                                        <td><input name="ids" type="checkbox"></td>
+                                        <td><input name="uid" type="checkbox" value="${c.uid}"></td>
                                         <td>${c.uid}</td>
                                         <td>${c.username}</td>
                                         <td>${c.age}</td>
@@ -394,6 +394,7 @@
                             </tr>
                             </tfoot>-->
                             </table>
+                            </form>
                             <!--数据列表/-->
 
                             <!--工具栏-->
@@ -401,7 +402,7 @@
                                 <div class="form-group form-inline">
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-default" title="新建" onclick='location.href="all-order-manage-edit.html"'><i class="fa fa-file-o"></i> 新建</button>
-                                        <button type="button" class="btn btn-default" title="删除" onclick='confirm("你确认要删除吗？")'><i class="fa fa-trash-o"></i> 删除</button>
+                                        <button type="button" class="btn btn-default" title="删除" onclick='confirm("你确认要删除吗？")' form="delete_userByUid"><i class="fa fa-trash-o"></i> 删除</button>
                                         <button type="button" class="btn btn-default" title="开启" onclick='confirm("你确认要开启吗？")'><i class="fa fa-check"></i> 开启</button>
                                         <button type="button" class="btn btn-default" title="屏蔽" onclick='confirm("你确认要屏蔽吗？")'><i class="fa fa-ban"></i> 屏蔽</button>
                                         <button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();"><i class="fa fa-refresh"></i> 刷新</button>
