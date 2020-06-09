@@ -23,7 +23,13 @@ public interface UserService {
     User findUserByUid(User user);
     
     Order findOrderById(Order order);
+    
+    List<GoodType> findAllGood(int page, int size);
+    
+    GoodType findGoodById(GoodType goodType);
     void saveUserByUid(User user);
+    
+    void saveGoodByUid(GoodType goodType);
     //菜单（导航条）
     List<GoodType> menu();
     //商品列表

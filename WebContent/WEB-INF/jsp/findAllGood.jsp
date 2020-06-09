@@ -1,12 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-        <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-
-    <title>数据后台管理</title>
+<title>数据后台管理</title>
     <meta name="description" content="AdminLTE2定制版">
     <meta name="keywords" content="AdminLTE2定制版">
 
@@ -244,7 +243,7 @@
                             </li>
 
                             <li id="admin-register">
-                                <a href="all-admin-register.html">
+                                <a href="${pageContext.request.contextPath }/user/findAllGood.action?page=1&size=4">
                             <i class="fa fa-circle-o"></i> 商品类型管理
                         </a>
                             </li>
@@ -346,31 +345,24 @@
                                             <input id="selall" type="checkbox" class="icheckbox_square-blue">
                                         </th>
                                         <th class="sorting_asc">ID</th>
-                                        <th class="sorting">订单编号</th>
-                                        <th class="sorting">用户ID</th>
-                                        <th class="sorting">下单时间</th>
-                                        <th class="sorting">订单状态</th>
-										<th class="sorting">发货状态</th>
+                                        <th class="sorting_asc">商品ID</th>
+                                        <th class="sorting">名称</th>
+
                                         <th class="text-center">操作</th>
                                     </tr>
                                 </thead>
                                 <tbody>
 								<c:forEach items="${pageInfo.list}" var="c">
                                     <tr>
-                                        <td><input name="id" id="id" type="checkbox" value="${c.id}"></td>
+                                        <td><input name="goodId" id="goodId" type="checkbox" value="${c.goodId}"></td>
                                         <td>${c.id}</td>
-                                        <td>${c.oId}</td>
-                                        <td>${c.uId}</td>
-                                        <td>${c.createTime}</td>
-										<%-- <td>${c.state}</td> --%>
-										<td><c:if test="${c.state==1}">已付款</c:if>
-										<c:if test="${c.state==0}">未付款</c:if></td>
-										<%-- <td>${c.type}</td> --%>
-										<td>${c.uId}</td>
+                                        <td>${c.goodId}</td>
+                                        <td>${c.goodName}</td>
+                                      
                                         <td class="text-center">
-                                            <button type="button" class="btn bg-olive btn-xs" onclick='location.href="${pageContext.request.contextPath }/user/findOrderById.action?id=${c.id}"'>详情</button>
+                                            <button type="button" class="btn bg-olive btn-xs" onclick='location.href="${pageContext.request.contextPath }/user/editGoodById.action?id=${c.id}"'>编辑</button>
                                            
-                                         	<button type="button" class="btn bg-olive btn-xs" onclick='location.href="${pageContext.request.contextPath }/user/sendOrderById.action?id=${c.id}"'>发货</button>
+                                         
                                         </td>
                                     </tr>
 
@@ -440,17 +432,17 @@
                             
                             
                             <li>
-                                    <a href="${pageContext.request.contextPath }/user/list.action?page=1&size=${pageInfo.pageSize}" aria-label="Previous">首页</a>
+                                    <a href="${pageContext.request.contextPath }/good/findAllGood.action?page=1&size=${pageInfo.pageSize}" aria-label="Previous">首页</a>
                                 </li>
-                                <li><a href="${pageContext.request.contextPath }/user/list.action?page=${pageInfo.pageNum-1}&size=${pageInfo.pageSize}">上一页</a></li>
+                                <li><a href="${pageContext.request.contextPath }/good/findAllGood.action?page=${pageInfo.pageNum-1}&size=${pageInfo.pageSize}">上一页</a></li>
                                 <c:forEach begin="1" end="${pageInfo.pages }" var="pageNum">
-                                	<li><a href="${pageContext.request.contextPath }/user/list.action?page=${pageNum }&size=${pageInfo.pageSize}">${pageNum }</a></li>
+                                	<li><a href="${pageContext.request.contextPath }/good/findAllGood.action?page=${pageNum }&size=${pageInfo.pageSize}">${pageNum }</a></li>
                                 </c:forEach>
                                 
                               
-                                <li><a href="${pageContext.request.contextPath }/user/list.action?page=${pageInfo.pageNum+1}&size=${pageInfo.pageSize}">下一页</a></li>
+                                <li><a href="${pageContext.request.contextPath }/good/findAllGood.action?page=${pageInfo.pageNum+1}&size=${pageInfo.pageSize}">下一页</a></li>
                                 <li>
-                                    <a href="${pageContext.request.contextPath }/user/list.action?page=${pageInfo.pages}&size=${pageInfo.pageSize}" aria-label="Next">尾页</a>
+                                    <a href="${pageContext.request.contextPath }/good/findAllGood.action?page=${pageInfo.pages}&size=${pageInfo.pageSize}" aria-label="Next">尾页</a>
                                 </li>
                                 
                             </ul>
@@ -532,7 +524,7 @@
 		var pageSize = $("#changePageSize").val();
 
 		//向服务器发送请求，改变没页显示条数
-		location.href = "${pageContext.request.contextPath}/user/list.action?page=1&size="
+		location.href = "${pageContext.request.contextPath}/good/findAllGood.action?page=1&size="
 				+ pageSize;
 	}
     

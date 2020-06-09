@@ -2,6 +2,7 @@ package com.shop.mapper;
 
 import java.util.List;
 
+import com.shop.pojo.GoodType;
 import com.shop.pojo.Order;
 import com.shop.pojo.User;
 
@@ -15,4 +16,7 @@ public interface UserMapper {
 	 List<User> findAllUsers(int page,int size);
 	 List<Order> findAllOrder();
 	 Order findOrderById(Order order);
+	 List<GoodType> findAllGood();
+	 GoodType findGoodById(GoodType goodType);
+	 void saveGoodByUid(GoodType goodType);
 }

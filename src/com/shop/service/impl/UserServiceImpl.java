@@ -88,4 +88,21 @@ public class UserServiceImpl implements UserService {
 	public Order findOrderById(Order order) {
 		return userMapper.findOrderById(order);
 	}
+
+	@Override
+	public List<GoodType> findAllGood(int page, int size) {
+		PageHelper.startPage(page, size);
+		return userMapper.findAllGood();
+	}
+
+	@Override
+	public GoodType findGoodById(GoodType goodType) {
+		 return userMapper.findGoodById(goodType);
+	}
+
+	@Override
+	public void saveGoodByUid(GoodType goodType) {
+		System.out.println(goodType.toString());
+		userMapper.saveGoodByUid(goodType);
+	}
 }

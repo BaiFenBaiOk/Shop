@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.shop.exception.ExceptionFactory;
 import com.shop.exception.MyException;
+import com.shop.pojo.GoodType;
 import com.shop.pojo.Order;
 import com.shop.pojo.User;
 import com.shop.service.UserService;
@@ -14,6 +15,7 @@ import cn.itcast.mail.MailUtils;
 
 import java.io.IOException;
 import java.text.MessageFormat;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
 
@@ -180,6 +182,39 @@ public class UserController {
     	System.out.println(order1);
     	model.addAttribute("order", order1);
 		  return "edit_list";
+		 
+    }
+    
+    @RequestMapping("delete_userByUid")
+    public String delete_userByUid(@RequestParam("uid") String[] uid) throws MyException{
+    	String a = Arrays.toString(uid);
+    	System.out.println(a);
+		  return "e";
+		 
+    }
+    
+    @RequestMapping("findAllGood")
+    public ModelAndView findAllGood(@RequestParam(name = "page", required = true, defaultValue = "1") int page, @RequestParam(name = "size", required = true, defaultValue = "4") int size) throws Exception {
+        ModelAndView mv = new ModelAndView();
+        List<GoodType> goodType = userService.findAllGood(page, size);
+        //PageInfo就是一个分页Bean
+        PageInfo pageInfo=new PageInfo(goodType);
+        mv.addObject("pageInfo",pageInfo);
+        mv.setViewName("findAllGood");
+        return mv;
+    }
+    @RequestMapping("editGoodById")
+    public String editGoodById(GoodType goodType,Model model) throws MyException{
+    	GoodType goodType1 = userService.findGoodById(goodType);
+    	model.addAttribute("goodType", goodType1);
+		  return "edit_Good";
+		 
+    }
+    
+    @RequestMapping("edit_goodByUid")
+    public String edit_goodByUid(GoodType goodType) throws MyException{
+    	userService.saveGoodByUid(goodType);
+		  return "home";
 		 
     }
 }

@@ -116,7 +116,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  `id`,
 		  `oid`,
 		  `uid`,
-		  `create_time`,
+		  `create_time` createTime,
 		  `count`,
 		  `totol`,
 		  `state`
@@ -128,7 +128,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  `id`,
 		  `oid`,
 		  `uid`,
-		  `create_time`,
+		  `create_time` createTime,
 		  `count`,
 		  `totol`,
 		  `state`
@@ -136,4 +136,29 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE
 			`id` = #{id} 	
 	</select>
+	
+	<select id="findAllGood" resultType="goodtype">
+		SELECT
+		`id` ,
+	  `good_id` goodId,
+	  `name` goodName
+	FROM `good_type`
+	</select>
+	
+	<select id="findGoodById" parameterType="goodtype" resultType="goodtype">
+		SELECT
+			id ,
+		  `good_id` goodId,
+		  `name` goodName
+		FROM `good_type`
+			WHERE
+			`id` = #{id};	
+	</select>
+	
+	<update id="saveGoodByUid" parameterType="goodtype">
+		UPDATE `good_type`
+			SET `good_id` = #{goodId},
+			  `name` = #{goodName}
+			WHERE `id` = #{id};
+	</update>
 </mapper>

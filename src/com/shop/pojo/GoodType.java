@@ -5,6 +5,13 @@ public class GoodType {
 	public static GoodType getGoodType() {
 		return goodType;
 	}
+	private String id;
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	private String goodId;
 	private String goodName;
 	public String getGoodId() {
@@ -21,7 +28,8 @@ public class GoodType {
 	}
 	@Override
 	public String toString() {
-		return "GoodType [goodId=" + goodId + ", goodName=" + goodName + "]";
+		return "GoodType [id=" + id + ", goodId=" + goodId + ", goodName=" + goodName + "]";
 	}
+	
 	
 }
