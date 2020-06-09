@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.shop.exception.ExceptionFactory;
 import com.shop.exception.MyException;
+import com.shop.pojo.Order;
 import com.shop.pojo.User;
 import com.shop.service.UserService;
 import com.shop.utils.UUIDUtils;
@@ -158,7 +159,18 @@ public class UserController {
     
     @RequestMapping("updataUser")
     public String updataUser(String uid) throws MyException{
-
+    	
     	return "login";
+    }
+    
+    @RequestMapping("list")
+    public ModelAndView list(@RequestParam(name = "page", required = true, defaultValue = "1") int page, @RequestParam(name = "size", required = true, defaultValue = "4") int size) throws Exception {
+    	ModelAndView mv = new ModelAndView();
+        List<Order> order = userService.findAllList(page, size);
+        //PageInfo就是一个分页Bean
+        PageInfo pageInfo=new PageInfo(order);
+        mv.addObject("pageInfo",pageInfo);
+        mv.setViewName("list");
+        return mv;
     }
 }

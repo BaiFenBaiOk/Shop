@@ -113,6 +113,18 @@
     <link rel="stylesheet" href="../plugins/ionslider/ion.rangeSlider.skinNice.css">
     <link rel="stylesheet" href="../plugins/bootstrap-slider/slider.css">
     <link rel="stylesheet" href="../plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.css">
+    <script type="text/javascript">
+
+	/* function doDelete() {
+		$("#uid").
+		var name = $("#name").val();
+		var flag = confirm("是否确定删除?");
+		if(flag){
+			
+			location.href="${pageContext.request.contextPath }/user/deleteUser.action?uid="+uid;
+		}
+	} */
+</script>
 </head>
 
 <body class="hold-transition skin-purple sidebar-mini">
@@ -221,7 +233,7 @@
                 <ul class="sidebar-menu">
                     <li class="header">菜单</li>
 
-                    <li id="admin-index"><a href="all-admin-index.html"><i class="fa fa-dashboard"></i> <span>首页</span></a></li>
+                    <li id="admin-index"><a href="${pageContext.request.contextPath }/user/outLoginUser.action"><i class="fa fa-dashboard"></i> <span>首页</span></a></li>
 
                     <!-- 菜单 -->
 
@@ -261,7 +273,7 @@
 
                     <li class="treeview">
                         <a href="#">
-                    <i class="fa fa-cube"></i> <span>用户管理</span>
+                    <i class="fa fa-cube"></i> <span>订单管理</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
@@ -269,8 +281,8 @@
                         <ul class="treeview-menu">
 
                             <li id="charts-chartjs">
-                                <a href="list.html">
-                            <i class="fa fa-circle-o"></i> 全部用户
+                                <a href="${pageContext.request.contextPath }/user/list.action?page=1&size=4">
+                            <i class="fa fa-circle-o"></i> 全部订单
                         </a>
                             </li>
 
@@ -322,7 +334,8 @@
                                 <div class="form-group form-inline">
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-default" title="新建" onclick='location.href="all-order-manage-edit.html"'><i class="fa fa-file-o"></i> 新建</button>
-                                        <button type="button" class="btn btn-default" title="删除" onclick='confirm("你确认要删除吗？")'><i class="fa fa-trash-o"></i> 删除</button>
+                                        <!-- <button type="button" class="btn btn-default" title="删除" onclick='confirm("你确认要删除吗？")'><i class="fa fa-trash-o"></i> 删除</button> -->
+                                        <button type="button" class="btn btn-default" title="删除" onclick='doDelete()'><i class="fa fa-trash-o"></i> 删除</button>
                                         <button type="button" class="btn btn-default" title="开启" onclick='confirm("你确认要开启吗？")'><i class="fa fa-check"></i> 开启</button>
                                         <button type="button" class="btn btn-default" title="屏蔽" onclick='confirm("你确认要屏蔽吗？")'><i class="fa fa-ban"></i> 屏蔽</button>
                                         <button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();"><i class="fa fa-refresh"></i> 刷新</button>
@@ -360,7 +373,7 @@
 
 							<c:forEach items="${pageInfo.list}" var="c">
                                     <tr>
-                                        <td><input name="ids" type="checkbox"></td>
+                                        <td><input name="uid" id="uid" type="checkbox" value="${c.uid}"></td>
                                         <td>${c.uid}</td>
                                         <td>${c.username}</td>
                                         <td>${c.age}</td>

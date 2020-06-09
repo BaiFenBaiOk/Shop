@@ -110,4 +110,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			`uid` = #{uid} ;
 		
 	</update>
+	
+	<select id="findAllOrder" resultType="order">
+		SELECT
+		  `id`,
+		  `oid`,
+		  `uid`,
+		  `create_time`,
+		  `count`,
+		  `totol`,
+		  `state`
+		FROM `orders`	
+	</select>
 </mapper>

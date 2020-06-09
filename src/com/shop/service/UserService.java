@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.shop.pojo.GoodType;
 import com.shop.pojo.Goods;
+import com.shop.pojo.Order;
 import com.shop.pojo.User;
 
 public interface UserService {
@@ -16,6 +17,8 @@ public interface UserService {
     
     List<User> findAllUser();
     List<User> findAllUsers(int page,int size);
+    
+    List<Order> findAllList(int page,int size);
     
     User findUserByUid(User user);
     

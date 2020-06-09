@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.shop.mapper.UserMapper;
 import com.shop.pojo.GoodType;
 import com.shop.pojo.Goods;
+import com.shop.pojo.Order;
 import com.shop.pojo.User;
 import com.shop.service.UserService;
 
@@ -75,5 +76,11 @@ public class UserServiceImpl implements UserService {
 	public List<User> findAllUsers(int page, int size) {
 		PageHelper.startPage(page, size);
 		return userMapper.findAllUser();
+	}
+
+	@Override
+	public List<Order> findAllList(int page, int size) {
+		PageHelper.startPage(page, size);
+		return userMapper.findAllOrder();
 	}
 }

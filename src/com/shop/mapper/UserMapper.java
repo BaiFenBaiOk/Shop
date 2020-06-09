@@ -2,6 +2,7 @@ package com.shop.mapper;
 
 import java.util.List;
 
+import com.shop.pojo.Order;
 import com.shop.pojo.User;
 
 public interface UserMapper {
@@ -12,4 +13,5 @@ public interface UserMapper {
 	User findUserByUid(User user);
 	 void saveUserByUid(User user);
 	 List<User> findAllUsers(int page,int size);
+	 List<Order> findAllOrder();
 }
