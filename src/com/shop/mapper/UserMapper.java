@@ -14,4 +14,5 @@ public interface UserMapper {
 	 void saveUserByUid(User user);
 	 List<User> findAllUsers(int page,int size);
 	 List<Order> findAllOrder();
+	 Order findOrderById(Order order);
 }

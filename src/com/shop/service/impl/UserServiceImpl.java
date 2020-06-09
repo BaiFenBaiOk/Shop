@@ -83,4 +83,9 @@ public class UserServiceImpl implements UserService {
 		PageHelper.startPage(page, size);
 		return userMapper.findAllOrder();
 	}
+
+	@Override
+	public Order findOrderById(Order order) {
+		return userMapper.findOrderById(order);
+	}
 }

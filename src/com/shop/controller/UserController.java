@@ -173,4 +173,13 @@ public class UserController {
         mv.setViewName("list");
         return mv;
     }
+    
+    @RequestMapping("findOrderById")
+    public String findOrderById(Order order,Model model) throws MyException{
+    	Order order1 = userService.findOrderById(order);
+    	System.out.println(order1);
+    	model.addAttribute("order", order1);
+		  return "edit_list";
+		 
+    }
 }

@@ -122,4 +122,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  `state`
 		FROM `orders`	
 	</select>
+	
+	<select id="findOrderById" parameterType="order" resultType="order">
+		SELECT
+		  `id`,
+		  `oid`,
+		  `uid`,
+		  `create_time`,
+		  `count`,
+		  `totol`,
+		  `state`
+		FROM `orders`
+		WHERE
+			`id` = #{id} 	
+	</select>
 </mapper>

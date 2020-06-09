@@ -22,6 +22,7 @@ public interface UserService {
     
     User findUserByUid(User user);
     
+    Order findOrderById(Order order);
     void saveUserByUid(User user);
     //菜单（导航条）
     List<GoodType> menu();

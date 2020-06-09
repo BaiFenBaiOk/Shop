@@ -369,7 +369,7 @@
 										
                                         <td class="text-center">
                                             <button type="button" class="btn bg-olive btn-xs" onclick='location.href="${pageContext.request.contextPath }/user/findOrderById.action?id=${c.id}"'>详情</button>
-                                            <button type="button" class="btn bg-olive btn-xs" onclick='location.href="${pageContext.request.contextPath }/user/edit_order.action?id=${c.id}"'>编辑</button>
+                                           
                                          
                                         </td>
                                     </tr>
