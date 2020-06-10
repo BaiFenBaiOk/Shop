@@ -9,8 +9,15 @@ public class Goods {
 	private String gName;
 	private double price;
 	private String photo;
+	private String desc;
 	private Integer count;
 	private String goodId;
+	public String getDesc() {
+		return desc;
+	}
+	public void setDesc(String desc) {
+		this.desc = desc;
+	}
 	public String getgId() {
 		return gId;
 	}
@@ -49,8 +56,9 @@ public class Goods {
 	}
 	@Override
 	public String toString() {
-		return "Goods [gId=" + gId + ", gName=" + gName + ", price=" + price + ", photo=" + photo + ", count=" + count
-				+ ", goodId=" + goodId + "]";
+		return "Goods [gId=" + gId + ", gName=" + gName + ", price=" + price + ", photo=" + photo + ", desc=" + desc
+				+ ", count=" + count + ", goodId=" + goodId + "]";
 	}
+	
 	
 }

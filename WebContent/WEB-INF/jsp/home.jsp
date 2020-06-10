@@ -242,13 +242,13 @@
                             </li>
 
                             <li id="admin-register">
-                                <a href="${pageContext.request.contextPath }/user/findAllGood.action?page=1&size=4">
+                                <a href="${pageContext.request.contextPath }/user/findAllGoodType.action?page=1&size=4">
                             <i class="fa fa-circle-o"></i> 商品类型管理
                         </a>
                             </li>
 
                             <li id="admin-404">
-                                <a href="all-admin-404.html">
+                                <a href="${pageContext.request.contextPath }/user/findAllGood.action?page=1&size=4">
                             <i class="fa fa-circle-o"></i> 商品管理
                         </a>
                             </li>

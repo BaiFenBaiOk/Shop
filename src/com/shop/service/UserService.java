@@ -24,12 +24,16 @@ public interface UserService {
     
     Order findOrderById(Order order);
     
-    List<GoodType> findAllGood(int page, int size);
-    
-    GoodType findGoodById(GoodType goodType);
+    List<GoodType> findAllGoodType(int page, int size);
+    List<Goods> findAllGood(int page, int size);
+    GoodType findGoodTypeById(GoodType goodType);
+    Goods findGoodById(Goods good);
     void saveUserByUid(User user);
     
-    void saveGoodByUid(GoodType goodType);
+    void saveGoodTypeByUid(GoodType goodType);
+    void saveGoodByUid(Goods good);
+    void sendOrderById(Order order);
+    void addGoodTypeNew(GoodType goodType);
     //菜单（导航条）
     List<GoodType> menu();
     //商品列表

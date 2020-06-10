@@ -292,13 +292,13 @@
             <!-- 内容头部 -->
             <section class="content-header">
                 <h1>
-                    商品管理
-                    <small>全部商品</small>
+                    商品类型管理
+                    <small>全部商品类型</small>
                 </h1>
                 <ol class="breadcrumb">
                     <li><a href="all-admin-index.html"><i class="fa fa-dashboard"></i> 首页</a></li>
-                    <li><a href="all-order-manage-list.html">商品管理</a></li>
-                    <li class="active">全部商品</li>
+                    <li><a href="all-order-manage-list.html">商品类型管理</a></li>
+                    <li class="active">全部商品类型</li>
                 </ol>
             </section>
             <!-- 内容头部 /-->
@@ -321,9 +321,9 @@
                             <div class="pull-left">
                                 <div class="form-group form-inline">
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-default" title="新建" onclick='location.href="edit_list.html"'><i class="fa fa-file-o"></i> 新建</button>
+                                        <button type="button" class="btn btn-default" title="新建" onclick='location.href="${pageContext.request.contextPath }/user/addGoodType.action"'><i class="fa fa-file-o"></i> 新建</button>
                                         <button type="button" class="btn btn-default" title="删除" onclick='confirm("你确认要删除吗？")'><i class="fa fa-trash-o"></i> 删除</button>
-                                        <!-- <button type="button" class="btn btn-default" title="开启" onclick='confirm("你确认要开启吗？")'><i class="fa fa-check"></i> 开启</button>
+                                       <!--  <button type="button" class="btn btn-default" title="开启" onclick='confirm("你确认要开启吗？")'><i class="fa fa-check"></i> 开启</button>
                                         <button type="button" class="btn btn-default" title="屏蔽" onclick='confirm("你确认要屏蔽吗？")'><i class="fa fa-ban"></i> 屏蔽</button> -->
                                         <button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();"><i class="fa fa-refresh"></i> 刷新</button>
                                     </div>
@@ -344,27 +344,23 @@
                                         <th class="" style="padding-right:0px;">
                                             <input id="selall" type="checkbox" class="icheckbox_square-blue">
                                         </th>
-                                        
+                                        <th class="sorting_asc">ID</th>
                                         <th class="sorting_asc">商品ID</th>
                                         <th class="sorting">名称</th>
-                                        <th class="sorting_asc">价格</th>
-										<th class="sorting_asc">数量</th>
-										<th class="sorting_asc">种类</th>
+
                                         <th class="text-center">操作</th>
                                     </tr>
                                 </thead>
                                 <tbody>
 								<c:forEach items="${pageInfo.list}" var="c">
                                     <tr>
-                                        <td><input name="gId" id="gId" type="checkbox" value="${c.gId}"></td>
-                                        <td>${c.gId}</td>
-                                        
-                                        <td>${c.gName}</td>
-                                        <td>${c.price}</td>
-                                        <td>${c.count}</td>
-                                      	 <td>${c.goodId}</td>
+                                        <td><input name="goodId" id="goodId" type="checkbox" value="${c.goodId}"></td>
+                                        <td>${c.id}</td>
+                                        <td>${c.goodId}</td>
+                                        <td>${c.goodName}</td>
+                                      
                                         <td class="text-center">
-                                            <button type="button" class="btn bg-olive btn-xs" onclick='location.href="${pageContext.request.contextPath }/user/editGoodById.action?gId=${c.gId}"'>编辑|详情</button>
+                                            <button type="button" class="btn bg-olive btn-xs" onclick='location.href="${pageContext.request.contextPath }/user/editGoodTypeById.action?id=${c.id}"'>编辑</button>
                                            
                                          
                                         </td>
@@ -395,7 +391,7 @@
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-default" title="新建" onclick='location.href="edit_list.html"'><i class="fa fa-file-o"></i> 新建</button>
                                         <button type="button" class="btn btn-default" title="删除" onclick='confirm("你确认要删除吗？")'><i class="fa fa-trash-o"></i> 删除</button>
-                                        <!-- <button type="button" class="btn btn-default" title="开启" onclick='confirm("你确认要开启吗？")'><i class="fa fa-check"></i> 开启</button>
+                                       <!--  <button type="button" class="btn btn-default" title="开启" onclick='confirm("你确认要开启吗？")'><i class="fa fa-check"></i> 开启</button>
                                         <button type="button" class="btn btn-default" title="屏蔽" onclick='confirm("你确认要屏蔽吗？")'><i class="fa fa-ban"></i> 屏蔽</button> -->
                                         <button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();"><i class="fa fa-refresh"></i> 刷新</button>
                                     </div>
@@ -436,17 +432,17 @@
                             
                             
                             <li>
-                                    <a href="${pageContext.request.contextPath }/user/findAllGood.action?page=1&size=${pageInfo.pageSize}" aria-label="Previous">首页</a>
+                                    <a href="${pageContext.request.contextPath }/user/findAllGoodType.action?page=1&size=${pageInfo.pageSize}" aria-label="Previous">首页</a>
                                 </li>
-                                <li><a href="${pageContext.request.contextPath }/user/findAllGood.action?page=${pageInfo.pageNum-1}&size=${pageInfo.pageSize}">上一页</a></li>
+                                <li><a href="${pageContext.request.contextPath }/user/findAllGoodType.action?page=${pageInfo.pageNum-1}&size=${pageInfo.pageSize}">上一页</a></li>
                                 <c:forEach begin="1" end="${pageInfo.pages }" var="pageNum">
-                                	<li><a href="${pageContext.request.contextPath }/user/findAllGood.action?page=${pageNum }&size=${pageInfo.pageSize}">${pageNum }</a></li>
+                                	<li><a href="${pageContext.request.contextPath }/user/findAllGoodType.action?page=${pageNum }&size=${pageInfo.pageSize}">${pageNum }</a></li>
                                 </c:forEach>
                                 
                               
-                                <li><a href="${pageContext.request.contextPath }/user/findAllGood.action?page=${pageInfo.pageNum+1}&size=${pageInfo.pageSize}">下一页</a></li>
+                                <li><a href="${pageContext.request.contextPath }/user/findAllGoodType.action?page=${pageInfo.pageNum+1}&size=${pageInfo.pageSize}">下一页</a></li>
                                 <li>
-                                    <a href="${pageContext.request.contextPath }/user/findAllGood.action?page=${pageInfo.pages}&size=${pageInfo.pageSize}" aria-label="Next">尾页</a>
+                                    <a href="${pageContext.request.contextPath }/user/findAllGoodType.action?page=${pageInfo.pages}&size=${pageInfo.pageSize}" aria-label="Next">尾页</a>
                                 </li>
                                 
                             </ul>
@@ -528,7 +524,7 @@
 		var pageSize = $("#changePageSize").val();
 
 		//向服务器发送请求，改变没页显示条数
-		location.href = "${pageContext.request.contextPath}/user/findAllGood.action?page=1&size="
+		location.href = "${pageContext.request.contextPath}/user/findAllGoodType.action?page=1&size="
 				+ pageSize;
 	}
     

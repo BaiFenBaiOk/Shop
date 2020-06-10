@@ -5,6 +5,7 @@ import com.github.pagehelper.PageInfo;
 import com.shop.exception.ExceptionFactory;
 import com.shop.exception.MyException;
 import com.shop.pojo.GoodType;
+import com.shop.pojo.Goods;
 import com.shop.pojo.Order;
 import com.shop.pojo.User;
 import com.shop.service.UserService;
@@ -193,28 +194,69 @@ public class UserController {
 		 
     }
     
+    @RequestMapping("findAllGoodType")
+    public ModelAndView findAllGoodType(@RequestParam(name = "page", required = true, defaultValue = "1") int page, @RequestParam(name = "size", required = true, defaultValue = "4") int size) throws Exception {
+        ModelAndView mv = new ModelAndView();
+        List<GoodType> goodType = userService.findAllGoodType(page, size);
+        //PageInfo就是一个分页Bean
+        PageInfo pageInfo=new PageInfo(goodType);
+        mv.addObject("pageInfo",pageInfo);
+        mv.setViewName("findAllGoodType");
+        return mv;
+    }
+    @RequestMapping("editGoodTypeById")
+    public String editGoodTypeById(GoodType goodType,Model model) throws MyException{
+    	GoodType goodType1 = userService.findGoodTypeById(goodType);
+    	model.addAttribute("goodType", goodType1);
+		  return "edit_GoodType";
+		 
+    }
+    
+    @RequestMapping("edit_goodTypeByUid")
+    public String edit_goodTypeByUid(GoodType goodType) throws MyException{
+    	userService.saveGoodTypeByUid(goodType);
+		  return "home";
+		 
+    }
+    
     @RequestMapping("findAllGood")
     public ModelAndView findAllGood(@RequestParam(name = "page", required = true, defaultValue = "1") int page, @RequestParam(name = "size", required = true, defaultValue = "4") int size) throws Exception {
         ModelAndView mv = new ModelAndView();
-        List<GoodType> goodType = userService.findAllGood(page, size);
+        List<Goods> goods = userService.findAllGood(page, size);
         //PageInfo就是一个分页Bean
-        PageInfo pageInfo=new PageInfo(goodType);
+        PageInfo pageInfo=new PageInfo(goods);
         mv.addObject("pageInfo",pageInfo);
         mv.setViewName("findAllGood");
         return mv;
     }
     @RequestMapping("editGoodById")
-    public String editGoodById(GoodType goodType,Model model) throws MyException{
-    	GoodType goodType1 = userService.findGoodById(goodType);
-    	model.addAttribute("goodType", goodType1);
+    public String editGoodById(Goods good,Model model) throws MyException{
+    	Goods goods = userService.findGoodById(good);
+    	model.addAttribute("good", goods);
 		  return "edit_Good";
 		 
     }
     
     @RequestMapping("edit_goodByUid")
-    public String edit_goodByUid(GoodType goodType) throws MyException{
-    	userService.saveGoodByUid(goodType);
+    public String edit_goodByUid(Goods good) throws MyException{
+    	userService.saveGoodByUid(good);
 		  return "home";
 		 
+    }
+    @RequestMapping("sendOrderById")
+    public String sendOrderById(Order order) throws MyException{
+    	order.setState(1);
+    	userService.sendOrderById(order);
+		  return "home";
+		 
+    }
+    @RequestMapping("addGoodType")
+    public String addGoodType() throws MyException{
+		  return "addGoodType"; 
+    }
+    @RequestMapping("addGoodTypeNew")
+    public String addGoodTypeNew(GoodType goodType) throws MyException{
+    	userService.addGoodTypeNew(goodType);
+		  return "home"; 
     }
 }

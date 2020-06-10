@@ -244,13 +244,13 @@
                             </li>
 
                             <li id="admin-register">
-                                <a href="all-admin-register.html">
+                                <a href="${pageContext.request.contextPath }/user/findAllGoodType.action?page=1&size=4">
                             <i class="fa fa-circle-o"></i> 商品类型管理
                         </a>
                             </li>
 
                             <li id="admin-404">
-                                <a href="all-admin-404.html">
+                                <a href="${pageContext.request.contextPath }/user/findAllGood.action?page=1&size=4">
                             <i class="fa fa-circle-o"></i> 商品管理
                         </a>
                             </li>
@@ -322,10 +322,10 @@
                             <div class="pull-left">
                                 <div class="form-group form-inline">
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-default" title="新建" onclick='location.href="edit_list.html"'><i class="fa fa-file-o"></i> 新建</button>
+                                       <!--  <button type="button" class="btn btn-default" title="新建" onclick='location.href="edit_list.html"'><i class="fa fa-file-o"></i> 新建</button> -->
                                         <button type="button" class="btn btn-default" title="删除" onclick='confirm("你确认要删除吗？")'><i class="fa fa-trash-o"></i> 删除</button>
-                                        <button type="button" class="btn btn-default" title="开启" onclick='confirm("你确认要开启吗？")'><i class="fa fa-check"></i> 开启</button>
-                                        <button type="button" class="btn btn-default" title="屏蔽" onclick='confirm("你确认要屏蔽吗？")'><i class="fa fa-ban"></i> 屏蔽</button>
+                                       <!--  <button type="button" class="btn btn-default" title="开启" onclick='confirm("你确认要开启吗？")'><i class="fa fa-check"></i> 开启</button>
+                                        <button type="button" class="btn btn-default" title="屏蔽" onclick='confirm("你确认要屏蔽吗？")'><i class="fa fa-ban"></i> 屏蔽</button> -->
                                         <button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();"><i class="fa fa-refresh"></i> 刷新</button>
                                     </div>
                                 </div>
@@ -366,7 +366,8 @@
 										<td><c:if test="${c.state==1}">已付款</c:if>
 										<c:if test="${c.state==0}">未付款</c:if></td>
 										<%-- <td>${c.type}</td> --%>
-										<td>${c.uId}</td>
+										<td><c:if test="${c.state==1}">已发货</c:if>
+										<c:if test="${c.state==0}">未发货</c:if></td>
                                         <td class="text-center">
                                             <button type="button" class="btn bg-olive btn-xs" onclick='location.href="${pageContext.request.contextPath }/user/findOrderById.action?id=${c.id}"'>详情</button>
                                            
@@ -397,10 +398,10 @@
                             <div class="pull-left">
                                 <div class="form-group form-inline">
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-default" title="新建" onclick='location.href="edit_list.html"'><i class="fa fa-file-o"></i> 新建</button>
+                                      <!--   <button type="button" class="btn btn-default" title="新建" onclick='location.href="edit_list.html"'><i class="fa fa-file-o"></i> 新建</button> -->
                                         <button type="button" class="btn btn-default" title="删除" onclick='confirm("你确认要删除吗？")'><i class="fa fa-trash-o"></i> 删除</button>
-                                        <button type="button" class="btn btn-default" title="开启" onclick='confirm("你确认要开启吗？")'><i class="fa fa-check"></i> 开启</button>
-                                        <button type="button" class="btn btn-default" title="屏蔽" onclick='confirm("你确认要屏蔽吗？")'><i class="fa fa-ban"></i> 屏蔽</button>
+                                        <!-- <button type="button" class="btn btn-default" title="开启" onclick='confirm("你确认要开启吗？")'><i class="fa fa-check"></i> 开启</button>
+                                        <button type="button" class="btn btn-default" title="屏蔽" onclick='confirm("你确认要屏蔽吗？")'><i class="fa fa-ban"></i> 屏蔽</button> -->
                                         <button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();"><i class="fa fa-refresh"></i> 刷新</button>
                                     </div>
                                 </div>

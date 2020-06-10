@@ -137,7 +137,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			`id` = #{id} 	
 	</select>
 	
-	<select id="findAllGood" resultType="goodtype">
+	<select id="findAllGoodType" resultType="goodtype">
 		SELECT
 		`id` ,
 	  `good_id` goodId,
@@ -145,7 +145,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	FROM `good_type`
 	</select>
 	
-	<select id="findGoodById" parameterType="goodtype" resultType="goodtype">
+	<select id="findGoodTypeById" parameterType="goodtype" resultType="goodtype">
 		SELECT
 			id ,
 		  `good_id` goodId,
@@ -155,10 +155,68 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			`id` = #{id};	
 	</select>
 	
-	<update id="saveGoodByUid" parameterType="goodtype">
+	<update id="saveGoodTypeByUid" parameterType="goodtype">
 		UPDATE `good_type`
 			SET `good_id` = #{goodId},
 			  `name` = #{goodName}
 			WHERE `id` = #{id};
 	</update>
+	
+	<select id="findAllGood" resultType="goods">
+		SELECT 	`gid` gId, 
+			`gname` gName, 
+			`price`, 
+			`desc`, 
+			`photo`, 
+			`count`, 
+			`good_id` goodId
+			 
+			FROM 
+			`goods` 
+	</select>
+	
+	<select id="findGoodById" parameterType="goods" resultType="goods">
+		SELECT 	`gid` gId, 
+			`gname` gName, 
+			`price`, 
+			`desc`, 
+			`photo`, 
+			`count`, 
+			`good_id` goodId
+			 
+			FROM 
+			`goods` 
+			WHERE
+			`gid` = #{gId};	
+	</select>
+	<update id="saveGoodByUid" parameterType="goods">
+		UPDATE `goods`
+			SET `gid` = #{gId},
+			  `gname` = #{gName},
+			  `price` = #{price},
+			  `desc` = #{desc},
+			  `photo` = #{photo},
+			  `count` = #{count},
+			  `good_id` = #{goodId}
+			WHERE `gid` = #{gId};
+	</update>
+	<update id="sendOrderById" parameterType="order">
+		UPDATE `orders`
+			SET 
+			  `state` = #{state}
+			WHERE `id` = #{id};
+	</update>
+	
+	<insert id="addGoodTypeNew" parameterType="goodType">
+		<selectKey keyProperty="id" resultType="string" order="BEFORE">
+			SELECT UUID()
+		</selectKey>
+			INSERT INTO `good_type`
+	            (`id`,
+	             `good_id`,
+	             `name`)
+		VALUES (#{id},
+		        #{goodId},
+		        #{goodName});
+	</insert>
 </mapper>

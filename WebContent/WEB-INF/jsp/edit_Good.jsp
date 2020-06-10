@@ -242,13 +242,13 @@
                             </li>
 
                             <li id="admin-register">
-                                <a href="all-admin-register.html">
+                                <a href="${pageContext.request.contextPath }/user/findAllGoodType.action?page=1&size=4">
                             <i class="fa fa-circle-o"></i> 商品类型管理
                         </a>
                             </li>
 
                             <li id="admin-404">
-                                <a href="all-admin-404.html">
+                                <a href="${pageContext.request.contextPath }/user/findAllGood.action?page=1&size=4">
                             <i class="fa fa-circle-o"></i> 商品管理
                         </a>
                             </li>
@@ -260,7 +260,7 @@
 
                     <li class="treeview">
                         <a href="#">
-                    <i class="fa fa-cube"></i> <span>用户管理</span>
+                    <i class="fa fa-cube"></i> <span>订单管理</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
@@ -268,8 +268,8 @@
                         <ul class="treeview-menu">
 
                             <li id="charts-chartjs">
-                                <a href="list.html">
-                            <i class="fa fa-circle-o"></i> 全部用户
+                                <a href="${pageContext.request.contextPath }/user/list.action?page=1&size=4">
+                            <i class="fa fa-circle-o"></i> 全部订单
                         </a>
                             </li>
 
@@ -291,50 +291,60 @@
             <!-- 内容头部 -->
             <section class="content-header">
                 <h1>
-                    用户管理
-                    <small>用户表单</small>
+                    商品管理
+                    <small>商品表单</small>
                 </h1>
                 <ol class="breadcrumb">
                     <li><a href="all-admin-index.html"><i class="fa fa-dashboard"></i> 首页</a></li>
-                    <li><a href="all-order-manage-list.html">用户管理</a></li>
-                    <li class="active">用户表单</li>
+                    <li><a href="all-order-manage-list.html">商品管理</a></li>
+                    <li class="active">商品表单</li>
                 </ol>
             </section>
             <!-- 内容头部 /-->
 
             <!-- 正文区域 -->
             <section class="content">
-
-                
-
-                <!--游客信息-->
-                <form action="${pageContext.request.contextPath }/user/edit_goodByUid.action" method="post" id="edit_goodByUid">
+		<form action="${pageContext.request.contextPath }/user/edit_goodByUid.action" method="post" id="edit_goodByUid">
+                <!--订单信息-->
                 <div class="panel panel-default">
-                    <div class="panel-heading">用户信息</div>
-                    <!--数据列表-->
-                    <table id="dataList" class="table table-bordered table-striped table-hover dataTable">
-                        <thead>
-                            <tr>
-                                <th class="">ID</th>
-                                <th class="">名称</th>
-                               
-                            </tr>
-                        </thead>
-                        <tbody>
+                    <div class="panel-heading">商品信息</div>
+                    <div class="row data-type">
+						<input type="hidden" name="gId" value="${good.gId}">
+                        <div class="col-md-2 title">商品名字</div>
+                        <div class="col-md-4 data">
+                            <input type="text" class="form-control" name="gName" value="${good.gName }">
+                        </div>
 
-                            <tr><input type="hidden" name="id" value="${goodType.id}">
-            					<td><input type="text" name="goodId" value="${goodType.goodId}"></td>
-                                <td><input type="text" size="10" value="${goodType.goodName}" name="goodName"></td>
-        
-                            </tr>
+                        <div class="col-md-2 title">商品价格</div>
+                        <div class="col-md-4 data">
+                             <input type="text" class="form-control" name="price" value="${good.price }">
+                        </div>
+                        <div class="col-md-2 title">商品数量</div>
+                        <div class="col-md-4 data">
+                            <input type="text" class="form-control" name="count" value="${good.count }">
+                        </div>
 
-                        </tbody>
-                    </table>
-                    <!--数据列表/-->
+                        <div class="col-md-2 title">商品种类</div>
+                        <div class="col-md-4 data">
+                            <input type="text" class="form-control" name="goodId" value="${good.goodId }">
+
+                        </div>
+
+                        
+                        <div class="col-md-2 title rowHeight2x">商品描述</div>
+                        <div class="col-md-10 data rowHeight2x">
+                            <textarea class="form-control" rows="3"></textarea>
+                        </div>
+                         <div class="col-md-2 title rowHeight2x">商品照片</div>
+                        <div class="col-md-10 data rowHeight2x">
+                            <textarea class="form-control" rows="3"></textarea>
+                        </div>
+
+                    </div>
                 </div>
-                <!--游客信息/-->
-
-                </form>
+                <!--订单信息/-->
+			</form>
+                
 
                 <!--操作日志-->
                 <div class="panel panel-default">

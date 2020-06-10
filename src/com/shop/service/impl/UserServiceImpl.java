@@ -90,19 +90,45 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<GoodType> findAllGood(int page, int size) {
+	public List<GoodType> findAllGoodType(int page, int size) {
+		PageHelper.startPage(page, size);
+		return userMapper.findAllGoodType();
+	}
+
+	@Override
+	public GoodType findGoodTypeById(GoodType goodType) {
+		 return userMapper.findGoodTypeById(goodType);
+	}
+
+	@Override
+	public void saveGoodTypeByUid(GoodType goodType) {
+		System.out.println(goodType.toString());
+		userMapper.saveGoodTypeByUid(goodType);
+	}
+
+	@Override
+	public List<Goods> findAllGood(int page, int size) {
 		PageHelper.startPage(page, size);
 		return userMapper.findAllGood();
 	}
 
 	@Override
-	public GoodType findGoodById(GoodType goodType) {
-		 return userMapper.findGoodById(goodType);
+	public Goods findGoodById(Goods good) {
+		return userMapper.findGoodById(good);
 	}
 
 	@Override
-	public void saveGoodByUid(GoodType goodType) {
-		System.out.println(goodType.toString());
-		userMapper.saveGoodByUid(goodType);
+	public void saveGoodByUid(Goods good) {
+		userMapper.saveGoodByUid(good);
+	}
+
+	@Override
+	public void sendOrderById(Order order) {
+		userMapper.sendOrderById(order);
+	}
+
+	@Override
+	public void addGoodTypeNew(GoodType goodType) {
+		userMapper.addGoodTypeNew(goodType);
 	}
 }

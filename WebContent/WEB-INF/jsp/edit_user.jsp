@@ -243,13 +243,13 @@
                             </li>
 
                             <li id="admin-register">
-                                <a href="all-admin-register.html">
+                                <a href="${pageContext.request.contextPath }/user/findAllGoodType.action?page=1&size=4">
                             <i class="fa fa-circle-o"></i> 商品类型管理
                         </a>
                             </li>
 
                             <li id="admin-404">
-                                <a href="all-admin-404.html">
+                                <a href="${pageContext.request.contextPath }/user/findAllGood.action?page=1&size=4">
                             <i class="fa fa-circle-o"></i> 商品管理
                         </a>
                             </li>
@@ -261,7 +261,7 @@
 
                     <li class="treeview">
                         <a href="#">
-                    <i class="fa fa-cube"></i> <span>用户管理</span>
+                    <i class="fa fa-cube"></i> <span>订单管理</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
@@ -269,8 +269,8 @@
                         <ul class="treeview-menu">
 
                             <li id="charts-chartjs">
-                                <a href="list.html">
-                            <i class="fa fa-circle-o"></i> 全部用户
+                                <a href="${pageContext.request.contextPath }/user/list.action?page=1&size=4">
+                            <i class="fa fa-circle-o"></i> 全部订单
                         </a>
                             </li>
 
