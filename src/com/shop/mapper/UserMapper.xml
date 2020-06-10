@@ -123,7 +123,56 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM `orders`	
 	</select>
 	
-	<select id="findOrderById" parameterType="order" resultType="order">
+	<!-- type数据类型 -->
+	<resultMap type="order" id="order_user_map">
+		<!-- 主键映射 -->
+		<id property="id" column="id" />
+		<result property="oId" column="oid" />
+		<result property="uId" column="uid" />
+		<result property="createTime" column="create_time" />
+		<result property="count" column="count" />
+		<result property="totol" column="totol" />
+		<result property="state" column="state" />
+		<!-- 用于配置一对一关系 ，property，订单order中的user属性
+		javaType可以用别名 user，user数据类型-->
+		<association property="user" javaType="user">
+			<id property="uid" column="uid" />
+			<result property="username" column="username" />
+			<result property="password" column="password" />
+			<result property="age" column="age" />
+			<result property="sex" column="sex" />
+			<result property="iphone" column="iphone" />
+			<result property="email" column="email" />
+			<result property="state" column="state" />
+		</association>
+	</resultMap>
+	
+	<select id="findOrderById" parameterType="order" resultMap="order_user_map">
+		SELECT
+	  o.`id`,
+	  o.`oid`            oId,
+	  o.`uid`            uId,
+	  o.`create_time`    createTime,
+	  o.`count`,
+	  o.`totol`,
+	  o.`state`,
+	  u.`uid`,
+	  u.`username`,
+	  u.`password`,
+	  u.`age`,
+	  u.`sex`,
+	  u.`iphone`,
+	  u.`email`,
+	  u.`code`,
+	  u.`state`,
+	  u.`type`
+	FROM `orders` o
+	  LEFT JOIN `user` u
+	    ON u.uid = o.uid
+	    WHERE  o.`id`=#{id}
+	</select>
+	
+	<!-- <select id="findOrderById" parameterType="order" resultType="order">
 		SELECT
 		  `id`,
 		  `oid`,
@@ -135,7 +184,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM `orders`
 		WHERE
 			`id` = #{id} 	
-	</select>
+	</select> -->
 	
 	<select id="findAllGoodType" resultType="goodtype">
 		SELECT

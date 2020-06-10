@@ -363,20 +363,21 @@
                         </thead>
                         <tbody>
 
-                           <tr>
-            					<input type="hidden" name="uid" value="${user.uid}">
-                                <td><c:if test="${user.age>18}">成人</c:if>
-                                <c:if test="${user.age<18}">儿童</c:if></td>
-                                <td><input type="text" size="10" value="${user.age}" name="age"></td>
-                                <td><input type="text" size="10" value="${user.username}" name="username"></td>
+                           <tr> <c:if test="${order.user!=null}">
+            					<%-- <input type="hidden" name="uid" value="${order.user.uid}"> --%>
+                                <td><c:if test="${order.user.age>18}">成人</c:if>
+                                <c:if test="${order.user.age<18}">儿童</c:if></td>
+                                <td><input type="text" size="10" value="${order.user.age}" name="age"></td>
+                                <td><input type="text" size="10" value="${order.user.username}" name="username"></td>
                                 <td>
                                     <select class="form-control" style="height:28px">
-                                    <option value="女" <c:if test="${user.sex eq '女'}">selected="selected"</c:if> >女</option>
-									<option value="男" <c:if test="${user.sex eq '男'}">selected="selected"</c:if> >男</option>
+                                    <option value="女" <c:if test="${order.user.sex eq '女'}">selected="selected"</c:if> >女</option>
+									<option value="男" <c:if test="${order.user.sex eq '男'}">selected="selected"</c:if> >男</option>
                     </select>
                                 </td>
-                                <td><input type="text" size="20" value="${user.iphone}" name="iphone"></td>
-                                <td><input type="text" size="50" value="${user.email}" name="email"></td>
+                                <td><input type="text" size="20" value="${order.user.iphone}" name="iphone"></td>
+                                <td><input type="text" size="50" value="${order.user.email}" name="email"></td>
+                            </c:if>
                             </tr>
 
                         </tbody>

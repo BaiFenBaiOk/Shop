@@ -5,8 +5,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>用户登录</title>
-<link rel="stylesheet" href="css/login.css" >
-<script src="js/jQuery3.4.1.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath }/css/login.css" >
+<script src="${pageContext.request.contextPath }/js/jQuery3.4.1.js"></script>
 </head>
 <body>
 
