@@ -235,10 +235,17 @@ public class UserController {
         return mv;
     }
     @RequestMapping("editGoodById")
-    public String editGoodById(Goods good,Model model) throws MyException{
+    public ModelAndView editGoodById(Goods good,Model model) throws MyException{
+		/*
+		 * Goods goods = userService.findGoodById(good); model.addAttribute("good",
+		 * goods); return "edit_Good";
+		 */
     	Goods goods = userService.findGoodById(good);
-    	model.addAttribute("good", goods);
-		  return "edit_Good";
+    	ModelAndView mav = new ModelAndView();
+		mav.addObject("good", goods);
+		mav.setViewName("edit_Good");
+
+		return mav;
 		 
     }
     
@@ -285,6 +292,7 @@ public class UserController {
     	good.setPhoto(newName + sux);
     			
     	userService.addGoodNew(good);
+    	
     	//userService.addGoodss(good);
 		  return "home";
     }
