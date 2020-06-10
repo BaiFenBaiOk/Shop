@@ -15,11 +15,13 @@ import com.shop.utils.UUIDUtils;
 import cn.itcast.mail.Mail;
 import cn.itcast.mail.MailUtils;
 
+import java.io.File;
 import java.io.IOException;
 import java.text.MessageFormat;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
+import java.util.UUID;
 
 import javax.mail.MessagingException;
 import javax.mail.Session;
@@ -29,8 +31,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -264,9 +268,24 @@ public class UserController {
     public String addGoods() throws MyException{
 		  return "addGoods"; 
     }
-    @RequestMapping("addGoodss")
-    public String addGoodss(Goods good) throws MyException{
-    	userService.addGoodss(good);
+    @RequestMapping(value ="addGoodss", method = { RequestMethod.POST, RequestMethod.GET })
+    public String addGoodss(Goods good,MultipartFile pictureFile) throws MyException, Exception{
+    	// 图片新名字
+    	String newName = UUID.randomUUID().toString();
+    	// 图片原来的名字
+    	String oldName = pictureFile.getOriginalFilename();
+    	// 后缀
+    	String sux = oldName.substring(oldName.lastIndexOf("."));
+    	// 新建本地文件流
+    	File file = new File("D:\\WebWork\\" + newName + sux);
+    	// 写入本地磁盘
+    	pictureFile.transferTo(file);
+
+    	// 保存图片到数据库
+    	good.setPhoto(newName + sux);
+    			
+    	userService.addGoodNew(good);
+    	//userService.addGoodss(good);
 		  return "home";
     }
 

@@ -31,4 +31,5 @@ public interface UserMapper {
 	 void delGoodTypeByUid(QuervVo Vo);
 	 void delGoodByUid(QuervVo Vo);
 	 void delListByUid(QuervVo Vo);
+	 void addGoodNew(Goods good);
 }

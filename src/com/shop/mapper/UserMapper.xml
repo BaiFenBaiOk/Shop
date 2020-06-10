@@ -284,4 +284,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</foreach>
 		</where>
 	</delete>
+	
+	<insert id="addGoodNew" parameterType="goods">
+		<selectKey keyProperty="gId" resultType="string" order="BEFORE">
+			SELECT UUID()
+		</selectKey>
+		INSERT INTO `goods`
+            (`gid`,
+             `gname`,
+             `price`,
+             `desc`,
+             `photo`,
+             `count`,
+             `good_id`)
+		VALUES (#{gId},
+		        #{gName},
+		        #{price},
+		        #{desc},
+		        #{photo},
+		        #{count},
+		        #{goodId});
+	</insert>
 </mapper>

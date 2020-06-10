@@ -332,14 +332,19 @@
 
                         
                         <div class="col-md-2 title rowHeight2x">商品描述</div>
-                        <div class="col-md-10 data rowHeight2x">
-                            <textarea class="form-control" rows="3"></textarea>
+                         <div class="col-md-4 data">
+                         <%-- <textarea rows="3" cols="30" name="desc">${good.desc }</textarea> --%>
+                            <input type="text" class="form-control" name="desc" value="${good.desc }">
+
                         </div>
                          <div class="col-md-2 title rowHeight2x">商品照片</div>
-                        <div class="col-md-10 data rowHeight2x">
-                            <textarea class="form-control" rows="3"></textarea>
-                        </div>
+                        <div class="col-md-4">
+                            <c:if test="${good.photo !=null}">
+							<img src="${good.photo}" width=90 height=90/>
+							</c:if>
 
+                        </div>
+						
                     </div>
                 </div>
                 <!--订单信息/-->

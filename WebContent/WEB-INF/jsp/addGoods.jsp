@@ -304,7 +304,7 @@
 
             <!-- 正文区域 -->
             <section class="content">
-		<form action="${pageContext.request.contextPath }/user/addGoodss.action" method="post" id="addGoodss">
+		<form action="${pageContext.request.contextPath }/user/addGoodss.action" enctype="multipart/form-data" method="post" id="addGoodss">
                 <!--订单信息-->
                 <div class="panel panel-default">
                     <div class="panel-heading">商品信息</div>
@@ -333,11 +333,12 @@
                         
                         <div class="col-md-2 title rowHeight2x">商品描述</div>
                         <div class="col-md-10 data rowHeight2x">
-                            <textarea class="form-control" rows="3"></textarea>
+                            <textarea rows="3" cols="30" name="desc"></textarea>
                         </div>
                          <div class="col-md-2 title rowHeight2x">商品照片</div>
                         <div class="col-md-10 data rowHeight2x">
-                            <textarea class="form-control" rows="3"></textarea>
+                        
+							<input type="file"  name="pictureFile"/> 
                         </div>
 
                     </div>

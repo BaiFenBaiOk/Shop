@@ -157,4 +157,9 @@ public class UserServiceImpl implements UserService {
 	public void delListByUid(QuervVo Vo) {
 		userMapper.delListByUid(Vo);
 	}
+
+	@Override
+	public void addGoodNew(Goods good) {
+		userMapper.addGoodNew(good);
+	}
 }
