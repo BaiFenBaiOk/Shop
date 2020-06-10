@@ -323,7 +323,7 @@
                                 <div class="form-group form-inline">
                                     <div class="btn-group">
                                        <!--  <button type="button" class="btn btn-default" title="新建" onclick='location.href="edit_list.html"'><i class="fa fa-file-o"></i> 新建</button> -->
-                                        <button type="button" class="btn btn-default" title="删除" onclick='confirm("你确认要删除吗？")'><i class="fa fa-trash-o"></i> 删除</button>
+                                        <button type="submit" class="btn btn-default" title="删除" onclick='confirm("你确认要删除吗？")' form="delListByUid"><i class="fa fa-trash-o"></i> 删除</button>
                                        <!--  <button type="button" class="btn btn-default" title="开启" onclick='confirm("你确认要开启吗？")'><i class="fa fa-check"></i> 开启</button>
                                         <button type="button" class="btn btn-default" title="屏蔽" onclick='confirm("你确认要屏蔽吗？")'><i class="fa fa-ban"></i> 屏蔽</button> -->
                                         <button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();"><i class="fa fa-refresh"></i> 刷新</button>
@@ -337,13 +337,13 @@
                                 </div>
                             </div>
                             <!--工具栏/-->
-
+						<form action="${pageContext.request.contextPath }/user/delListByUid.action" method="post" id="delListByUid">
                             <!--数据列表-->
                             <table id="dataList" class="table table-bordered table-striped table-hover dataTable">
                                 <thead>
                                     <tr>
                                         <th class="" style="padding-right:0px;">
-                                            <input id="selall" type="checkbox" class="icheckbox_square-blue">
+                                            <input name="ids" id="selall" type="checkbox" class="icheckbox_square-blue">
                                         </th>
                                         <th class="sorting_asc">ID</th>
                                         <th class="sorting">订单编号</th>
@@ -357,7 +357,7 @@
                                 <tbody>
 								<c:forEach items="${pageInfo.list}" var="c">
                                     <tr>
-                                        <td><input name="id" id="id" type="checkbox" value="${c.id}"></td>
+                                        <td><input name="ids" id="ids" type="checkbox" value="${c.id}"></td>
                                         <td>${c.id}</td>
                                         <td>${c.oId}</td>
                                         <td>${c.uId}</td>
@@ -392,6 +392,7 @@
                             </tr>
                             </tfoot>-->
                             </table>
+                            </form>
                             <!--数据列表/-->
 
                             <!--工具栏-->
@@ -399,7 +400,7 @@
                                 <div class="form-group form-inline">
                                     <div class="btn-group">
                                       <!--   <button type="button" class="btn btn-default" title="新建" onclick='location.href="edit_list.html"'><i class="fa fa-file-o"></i> 新建</button> -->
-                                        <button type="button" class="btn btn-default" title="删除" onclick='confirm("你确认要删除吗？")'><i class="fa fa-trash-o"></i> 删除</button>
+                                        <button type="submit" class="btn btn-default" title="删除" onclick='confirm("你确认要删除吗？")' form="delListByUid"><i class="fa fa-trash-o"></i> 删除</button>
                                         <!-- <button type="button" class="btn btn-default" title="开启" onclick='confirm("你确认要开启吗？")'><i class="fa fa-check"></i> 开启</button>
                                         <button type="button" class="btn btn-default" title="屏蔽" onclick='confirm("你确认要屏蔽吗？")'><i class="fa fa-ban"></i> 屏蔽</button> -->
                                         <button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();"><i class="fa fa-refresh"></i> 刷新</button>

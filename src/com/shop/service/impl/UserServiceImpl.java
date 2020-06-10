@@ -5,6 +5,7 @@ import com.shop.mapper.UserMapper;
 import com.shop.pojo.GoodType;
 import com.shop.pojo.Goods;
 import com.shop.pojo.Order;
+import com.shop.pojo.QuervVo;
 import com.shop.pojo.User;
 import com.shop.service.UserService;
 
@@ -130,5 +131,30 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void addGoodTypeNew(GoodType goodType) {
 		userMapper.addGoodTypeNew(goodType);
+	}
+
+	@Override
+	public void addGoodss(Goods good) {
+		userMapper.addGoodss(good);
+	}
+
+	@Override
+	public void delUserByUid(QuervVo Vo) {
+		userMapper.delUserByUid(Vo);
+	}
+
+	@Override
+	public void delGoodTypeByUid(QuervVo Vo) {
+		userMapper.delGoodTypeByUid(Vo);
+	}
+
+	@Override
+	public void delGoodByUid(QuervVo Vo) {
+		userMapper.delGoodByUid(Vo);
+	}
+
+	@Override
+	public void delListByUid(QuervVo Vo) {
+		userMapper.delListByUid(Vo);
 	}
 }

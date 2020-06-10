@@ -7,6 +7,7 @@ import com.shop.exception.MyException;
 import com.shop.pojo.GoodType;
 import com.shop.pojo.Goods;
 import com.shop.pojo.Order;
+import com.shop.pojo.QuervVo;
 import com.shop.pojo.User;
 import com.shop.service.UserService;
 import com.shop.utils.UUIDUtils;
@@ -186,13 +187,13 @@ public class UserController {
 		 
     }
     
-    @RequestMapping("delete_userByUid")
-    public String delete_userByUid(@RequestParam("uid") String[] uid) throws MyException{
-    	String a = Arrays.toString(uid);
-    	System.out.println(a);
-		  return "e";
-		 
-    }
+	/*
+	 * @RequestMapping("delete_userByUid") public String
+	 * delete_userByUid(@RequestParam("uid") String[] uid) throws MyException{
+	 * String a = Arrays.toString(uid); System.out.println(a); return "e";
+	 * 
+	 * }
+	 */
     
     @RequestMapping("findAllGoodType")
     public ModelAndView findAllGoodType(@RequestParam(name = "page", required = true, defaultValue = "1") int page, @RequestParam(name = "size", required = true, defaultValue = "4") int size) throws Exception {
@@ -258,5 +259,45 @@ public class UserController {
     public String addGoodTypeNew(GoodType goodType) throws MyException{
     	userService.addGoodTypeNew(goodType);
 		  return "home"; 
+    }
+    @RequestMapping("addGoods")
+    public String addGoods() throws MyException{
+		  return "addGoods"; 
+    }
+    @RequestMapping("addGoodss")
+    public String addGoodss(Goods good) throws MyException{
+    	userService.addGoodss(good);
+		  return "home";
+    }
+
+	/*
+	 * @RequestMapping("delUserByUid") public String
+	 * delUserByUid(@RequestParam("uid") String[] uid) throws MyException{ String a
+	 * = Arrays.toString(uid); userService.delUserByUid(a); System.out.println(a);
+	 * //userService.delUserByUid(good); return "home"; }
+	 */
+    @RequestMapping("delUserByUid")
+    public String delUserByUid(QuervVo Vo) throws MyException{
+    	userService.delUserByUid(Vo);
+    	//userService.delUserByUid(good);
+		  return "home";
+    }
+    @RequestMapping("delGoodTypeByUid")
+    public String delGoodTypeByUid(QuervVo Vo) throws MyException{
+    	userService.delGoodTypeByUid(Vo);
+    	//userService.delUserByUid(good);
+		  return "home";
+    }
+    @RequestMapping("delGoodByUid")
+    public String delGoodByUid(QuervVo Vo) throws MyException{
+    	userService.delGoodByUid(Vo);
+    	//userService.delUserByUid(good);
+		  return "home";
+    }
+    @RequestMapping("delListByUid")
+    public String delListByUid(QuervVo Vo) throws MyException{
+    	userService.delListByUid(Vo);
+    	//userService.delUserByUid(good);
+		  return "home";
     }
 }

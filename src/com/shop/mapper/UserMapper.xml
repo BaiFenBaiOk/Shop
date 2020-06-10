@@ -219,4 +219,69 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		        #{goodId},
 		        #{goodName});
 	</insert>
+	
+	<insert id="addGoodss" parameterType="goods">
+		<selectKey keyProperty="gId" resultType="string" order="BEFORE">
+			SELECT UUID()
+		</selectKey>
+			INSERT INTO `goods`
+            (`gid`,
+             `gname`,
+             `price`,
+             `desc`,
+             `photo`,
+             `count`,
+             `good_id`)
+			VALUES (#{gId},
+			        #{gName},
+			        #{price},
+			        #{desc},
+			        #{photo},
+			        #{count},
+			       #{goodId});
+	</insert>
+	
+	<delete id="delUserByUid"  parameterType="QuervVo">
+	DELETE
+		FROM `user`
+		<where>
+			<!-- 遍历集合 item循环变量，separator分隔符 -->
+			<foreach collection="ids" open="uid IN(" item="uId" separator="," close=")">
+				#{uId}
+			</foreach>
+		</where>
+	</delete>
+	
+	<delete id="delGoodTypeByUid"  parameterType="QuervVo">
+	DELETE
+		FROM `good_type`
+		<where>
+			<!-- 遍历集合 item循环变量，separator分隔符 -->
+			<foreach collection="ids" open="good_id IN(" item="uId" separator="," close=")">
+				#{uId}
+			</foreach>
+		</where>
+	</delete>
+	
+	<delete id="delGoodByUid"  parameterType="QuervVo">
+			DELETE
+		FROM `goods`
+		<where>
+			<!-- 遍历集合 item循环变量，separator分隔符 -->
+			<foreach collection="ids" open="gid IN(" item="uId" separator="," close=")">
+				#{uId}
+			</foreach>
+		</where>
+	</delete>
+	
+	<delete id="delListByUid"  parameterType="QuervVo">
+			delete
+				from `orders`
+		<where>
+			<!-- 遍历集合 item循环变量，separator分隔符 -->
+			<foreach collection="ids" open="id IN(" item="uId" separator="," close=")">
+				#{uId}
+			</foreach>
+		</where>
+	</delete>
 </mapper>
