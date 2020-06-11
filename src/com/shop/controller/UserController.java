@@ -43,12 +43,18 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+    
+    @RequestMapping("loginUI")
+    public String loginUI(User user,Model model) throws MyException{
+    	return "login";
+    }
 
     @RequestMapping("login")
     public String login(User user,Model model) throws MyException{
         User user1 = userService.getLogin(user);
         if(user1 == null){
 			throw new MyException("查无此人~~~");
+			
 		}else if(user1.getState()=="0"){
 			throw new MyException("该账户未激活~~~");
 		}else{
@@ -58,7 +64,7 @@ public class UserController {
 			return "home";
 			}
 			else
-				return "null";
+				return "login";
 		}
     }
     
