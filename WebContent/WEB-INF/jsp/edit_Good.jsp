@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+        <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -220,7 +221,7 @@
                 <ul class="sidebar-menu">
                     <li class="header">菜单</li>
 
-                    <li id="admin-index"><a href="${pageContext.request.contextPath }/user/outLoginUser.action"><i class="fa fa-dashboard"></i> <span>首页</span></a></li>
+                    <li id="admin-index"><a href="${pageContext.request.contextPath }/user/findAllByOrder.action"><i class="fa fa-dashboard"></i> <span>首页</span></a></li>
 
                     <!-- 菜单 -->
 
@@ -325,9 +326,25 @@
                         </div>
 
                         <div class="col-md-2 title">商品种类</div>
-                        <div class="col-md-4 data">
+                       <%--  <div class="col-md-4 data">
                             <input type="text" class="form-control" name="goodId" value="${good.goodId }">
 
+                        </div> --%>
+                        <div class="col-md-4 data">
+                            <select class="form-control select2" style="width: 100%;">
+                           <%--  <option value="">${goodType.goodName }</option> --%>
+                            
+                            	<c:forEach items="${list}" var="c">
+                            		<option name="goodId" value="${c.goodId }" ${c.goodId ==goodType.goodId?'selected':''}>${c.goodName }</option>
+                            	</c:forEach>
+		                       <!--  <option value="" selected="selected">Alabama</option>
+		                        <option value="">Alaska</option>
+		                        <option value="">California</option>
+		                        <option value="">Delaware</option>
+		                        <option value="">Tennessee</option>
+		                        <option value="">Texas</option>
+		                        <option value="">Washington</option> -->
+                   			</select>
                         </div>
 
                         

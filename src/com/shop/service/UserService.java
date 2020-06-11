@@ -42,5 +42,8 @@ public interface UserService {
     void delListByUid(QuervVo Vo);
     void addGoodNew(Goods good);
     List<Order> findAll(int page,int size);
+    void savaUserPwdByUid(User user);
+    GoodType findGoodTypeById(Goods goods);
+    List<GoodType> findGoodType();
     
 }

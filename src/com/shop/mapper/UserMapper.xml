@@ -415,4 +415,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		`good_type` 
 		WHERE `good_id` = #{goodId}
 	</select>
+	
+	<update id="saveUserPwdByUid" parameterType="user">
+		UPDATE `user`
+			SET 
+			  `password` = #{password}
+			WHERE `uid` = #{uid};
+		
+	</update>
+	
+	<select id="findGoodTypeByIdd" parameterType="goods" resultType="goodtype">
+		SELECT
+			  `id`,
+			  `good_id` goodId,
+			  `name` goodName
+			FROM `good_type`
+			WHERE `good_id`=#{goodId}
+	</select>
+	<select id="findGoodType" resultType="goodtype">
+		SELECT
+			  `id`,
+			  `good_id` goodId,
+			  `name` goodName
+			FROM `good_type`
+	</select>
 </mapper>

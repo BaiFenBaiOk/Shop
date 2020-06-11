@@ -112,7 +112,7 @@ public class UserController {
 					e.printStackTrace();
 				}//发邮件
 
-        return "null";
+        return "login";
     }
     
     @RequestMapping("active")
@@ -179,9 +179,15 @@ public class UserController {
     }
     
     @RequestMapping("updataUser")
-    public String updataUser(String uid) throws MyException{
-    	
-    	return "login";
+    public String updataUser(User user,Model model) throws MyException{
+    	model.addAttribute("user", user);
+    	return "updataUser";
+    }
+    
+    @RequestMapping("edit_userPwdByUid")
+    public String edit_userPwdByUid(User user) throws MyException{
+    	userService.savaUserPwdByUid(user);
+    	return "home";
     }
     
     @RequestMapping("list")
@@ -247,6 +253,7 @@ public class UserController {
         mv.setViewName("findAllGood");
         return mv;
     }
+
     @RequestMapping("editGoodById")
     public ModelAndView editGoodById(Goods good,Model model) throws MyException{
 		/*
@@ -254,8 +261,18 @@ public class UserController {
 		 * goods); return "edit_Good";
 		 */
     	Goods goods = userService.findGoodById(good);
+    	GoodType goodType = userService.findGoodTypeById(goods);
+    	System.out.println(goodType.toString());
+    	
+    	List<GoodType> list = userService.findGoodType();
+    	
+    	for(GoodType l:list) {
+    		System.out.println(l.toString());
+    	}
     	ModelAndView mav = new ModelAndView();
 		mav.addObject("good", goods);
+		mav.addObject("goodType", goodType);
+		model.addAttribute("list", list);
 		mav.setViewName("edit_Good");
 
 		return mav;
@@ -298,6 +315,7 @@ public class UserController {
     	String sux = oldName.substring(oldName.lastIndexOf("."));
     	// 新建本地文件流
     	File file = new File("D:\\WebWork\\" + newName + sux);
+    	//File file = new File("/software/pic" + newName + sux);
     	// 写入本地磁盘
     	pictureFile.transferTo(file);
 

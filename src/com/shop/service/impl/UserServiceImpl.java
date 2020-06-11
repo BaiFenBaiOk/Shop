@@ -162,4 +162,19 @@ public class UserServiceImpl implements UserService {
 		}
 		return orders;
 	}
+
+	@Override
+	public void savaUserPwdByUid(User user) {
+		userMapper.saveUserPwdByUid(user);
+	}
+
+	@Override
+	public GoodType findGoodTypeById(Goods goods) {
+		return userMapper.findGoodTypeByIdd(goods);
+	}
+
+	@Override
+	public List<GoodType> findGoodType() {
+		return userMapper.findGoodType();
+	}
 }

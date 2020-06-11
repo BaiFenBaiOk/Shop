@@ -291,13 +291,13 @@
             <!-- 内容头部 -->
             <section class="content-header">
                 <h1>
-                    商品类型管理
-                    <small>商品类型表单</small>
+                   	修改密码管理
+                    <small>修改密码表单</small>
                 </h1>
                 <ol class="breadcrumb">
                     <li><a href="all-admin-index.html"><i class="fa fa-dashboard"></i> 首页</a></li>
-                    <li><a href="all-order-manage-list.html"> 商品类型管理</a></li>
-                    <li class="active">商品类型表单</li>
+                    <li><a href="all-order-manage-list.html"> 修改密码管理</a></li>
+                    <li class="active">修改密码表单</li>
                 </ol>
             </section>
             <!-- 内容头部 /-->
@@ -308,7 +308,7 @@
                 
 
                 <!--游客信息-->
-                <form action="${pageContext.request.contextPath }/user/addGoodTypeNew.action" method="post" id="addGoodTypeNew">
+                <form action="${pageContext.request.contextPath }/user/edit_userPwdByUid.action" method="post" id="edit_userPwdByUid">
                 <div class="panel panel-default">
                     <div class="panel-heading">用户信息</div>
                     <!--数据列表-->
@@ -316,15 +316,15 @@
                         <thead>
                             <tr>
                                 <th class="">ID</th>
-                                <th class="">名称</th>
+                                <th class="">新密码</th>
                                
                             </tr>
                         </thead>
                         <tbody>
 
                             <tr>
-            					<td><input type="text" name="goodId" ></td>
-                                <td><input type="text" name="goodName"></td>
+            					<td><input type="text" name="uid" value="${user.uid}"></td>
+                                <td><input type="text" size="10"  name="password"></td>
         
                             </tr>
 
@@ -380,7 +380,7 @@
 
                 <!--工具栏-->
                 <div class="box-tools text-center">
-                    <button type="submit" class="btn bg-maroon" form="addGoodTypeNew" value="保存">保存</button>
+                    <button type="submit" class="btn bg-maroon" form="edit_userPwdByUid" value="保存">保存</button>
                     <button type="button" class="btn bg-default" onclick="history.back(-1);">返回</button>
                 </div>
                 <!--工具栏/-->

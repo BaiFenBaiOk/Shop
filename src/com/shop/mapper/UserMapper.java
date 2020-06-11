@@ -38,4 +38,7 @@ public interface UserMapper {
 	 OrderItem findItemByOrder(String orderItem);
 	 Goods findGoodByOrder(OrderItem orderItem);
 	 GoodType findGoodTypeByOrder(Goods good);
+	 void saveUserPwdByUid(User user);
+	 GoodType findGoodTypeByIdd(Goods goods);
+	 List<GoodType> findGoodType();
 }

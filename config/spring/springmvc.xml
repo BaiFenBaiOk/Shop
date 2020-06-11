@@ -11,7 +11,7 @@
 
 	<mvc:annotation-driven conversion-service="MyConvert" />
 	
-	<!-- 定义转换器 -->
+	 <!-- 定义转换器 -->
 	<bean id="MyConvert" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
 		<property name="converters">
 			<set>
@@ -19,7 +19,7 @@
 			</set>
 		</property>
 	</bean>
-
+	
 	<!-- 配置视图解析器 -->
 	<bean	class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<!-- 前缀 -->
