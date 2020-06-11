@@ -15,6 +15,28 @@ public class Order {
 	private double totol;
 	private Integer state;
 	private User user;
+	private OrderItem orderItem;
+	private GoodType goodType;
+	private Goods goods;
+	
+	public Goods getGoods() {
+		return goods;
+	}
+	public void setGoods(Goods goods) {
+		this.goods = goods;
+	}
+	public OrderItem getOrderItem() {
+		return orderItem;
+	}
+	public void setOrderItem(OrderItem orderItem) {
+		this.orderItem = orderItem;
+	}
+	public GoodType getGoodType() {
+		return goodType;
+	}
+	public void setGoodType(GoodType goodType) {
+		this.goodType = goodType;
+	}
 	public User getUser() {
 		return user;
 	}

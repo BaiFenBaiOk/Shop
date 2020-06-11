@@ -5,6 +5,7 @@ import java.util.List;
 import com.shop.pojo.GoodType;
 import com.shop.pojo.Goods;
 import com.shop.pojo.Order;
+import com.shop.pojo.OrderItem;
 import com.shop.pojo.QuervVo;
 import com.shop.pojo.User;
 
@@ -32,4 +33,9 @@ public interface UserMapper {
 	 void delGoodByUid(QuervVo Vo);
 	 void delListByUid(QuervVo Vo);
 	 void addGoodNew(Goods good);
+	 List<Order> findAllByOrder();
+	 User findUserByOrder(String orderUid);
+	 OrderItem findItemByOrder(String orderItem);
+	 Goods findGoodByOrder(OrderItem orderItem);
+	 GoodType findGoodTypeByOrder(Goods good);
 }

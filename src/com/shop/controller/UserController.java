@@ -54,10 +54,23 @@ public class UserController {
 		}else{
 			if(user1.getType() == 0) {
 				model.addAttribute("user", user1);
-			return "home";}
+				
+			return "home";
+			}
 			else
 				return "null";
 		}
+    }
+    
+    @RequestMapping("findAllByOrder")
+    public ModelAndView findAllByOrder(@RequestParam(name = "page", required = true, defaultValue = "1") int page, @RequestParam(name = "size", required = true, defaultValue = "4") int size) throws Exception {
+        ModelAndView mv = new ModelAndView();
+        List<Order> order = userService.findAll(page, size);
+        //PageInfo就是一个分页Bean
+        PageInfo pageInfo=new PageInfo(order);
+        mv.addObject("pageInfo",pageInfo);
+        mv.setViewName("home");
+        return mv;
     }
     
     @RequestMapping("regist")

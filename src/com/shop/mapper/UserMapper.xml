@@ -354,4 +354,65 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		        #{count},
 		        #{goodId});
 	</insert>
+	
+	<select id="findAllByOrder" resultType="order">
+		SELECT
+		  `id`,
+		  `oid` oId,
+		  `uid` uId,
+		  `create_time` createTime,
+		  `count`,
+		  `totol`,
+		  `state`
+		FROM `orders`
+		WHERE `state`=0
+	</select>
+	<select id="findUserByOrder" parameterType="string" resultType="user">
+		SELECT
+		  `uid`,
+		  `username`,
+		  `password`,
+		  `age`,
+		  `sex`,
+		  `iphone`,
+		  `email`,
+		  `code`,
+		  `state`,
+		  `type`
+		FROM `user`
+		WHERE `uid` = #{value}
+	</select>
+	
+	<select id="findItemByOrder" parameterType="string" resultType="orderitem">
+		SELECT
+		  `oid` oId,
+		  `gid` gId,
+		  `uid` uId,
+		  `count`
+		FROM `order_item`
+		WHERE `oid` = #{value}
+	</select>
+	
+	<select id="findGoodByOrder" parameterType="orderItem" resultType="goods">
+		SELECT
+		  `gid` gId,
+		  `gname` gName,
+		  `price`,
+		  `desc`,
+		  `photo`,
+		  `count`,
+		  `good_id` goodId
+		FROM `goods`
+		WHERE `gid` = #{gId}
+	</select>
+	<select id="findGoodTypeByOrder" parameterType="goods" resultType="goodtype">
+		
+	SELECT 	`id`, 
+		`good_id` goodId, 
+		`name` goodName
+		 
+		FROM 
+		`good_type` 
+		WHERE `good_id` = #{goodId}
+	</select>
 </mapper>

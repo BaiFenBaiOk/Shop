@@ -1,10 +1,7 @@
 package com.shop.pojo;
 
 public class Goods {
-	private static Goods goods=new Goods();
-	public static Goods getGoods() {
-		return goods;
-	}
+	
 	private String gId;
 	private String gName;
 	private double price;

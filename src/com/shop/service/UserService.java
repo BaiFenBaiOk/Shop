@@ -41,11 +41,6 @@ public interface UserService {
     void delGoodByUid(QuervVo Vo);
     void delListByUid(QuervVo Vo);
     void addGoodNew(Goods good);
-    //菜单（导航条）
-    List<GoodType> menu();
-    //商品列表
-    List<Goods> goodsList();
-    //详情
-    Goods getGood(Goods good);
+    List<Order> findAll(int page,int size);
     
 }

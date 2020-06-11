@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -388,79 +389,28 @@
                                     <tr>
                                         <th class="">订单号</th>
                                         <th class="">产品名称</th>
-                                        <th class="">会员</th>
+                                        <th class="">会员名</th>
                                         <th class="">价格</th>
                                         <th class="">状态</th>
                                         <th class="text-center">操作</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-
+								<c:forEach items="${pageInfo.list}" var="c">
                                     <tr>
-                                        <td>2017020200001</td>
-                                        <td>西安3日自由行·超级自由行</td>
-                                        <td>bi'peng0405</td>
-                                        <td>￥500</td>
-                                        <td>已取消</td>
+                                        <td>${c.id }</td>
+                                        <td>${c.goodType.goodName }</td>
+                                        <td>${c.user.username }</td>
+                                        <td>${c.totol }</td>
+                                        <td><c:if test="${c.state==1}">已发货</c:if>
+										<c:if test="${c.state==0}">未发货</c:if></td>
                                         <td class="text-center">
-                                            <button type="button" class="btn bg-olive btn-xs" onclick='location.href="all-product-line-edit.html"'>编辑</button>
+                                            <button type="button" class="btn bg-olive btn-xs" onclick='location.href="${pageContext.request.contextPath }/user/sendOrderById.action?id=${c.id}"'>发货</button>
                                         </td>
                                     </tr>
+                                    </c:forEach>
 
-                                    <tr>
-                                        <td>2017020200001</td>
-                                        <td>西安3日自由行·超级自由行</td>
-                                        <td>bi'peng0405</td>
-                                        <td>￥500</td>
-                                        <td>已出团(待点评)</td>
-                                        <td class="text-center">
-                                            <button type="button" class="btn bg-olive btn-xs" onclick='location.href="all-product-line-edit.html"'>编辑</button>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>2017020200001</td>
-                                        <td>西安3日自由行·超级自由行</td>
-                                        <td>bi'peng0405</td>
-                                        <td>￥500</td>
-                                        <td>已处理(待付款)</td>
-                                        <td class="text-center">
-                                            <button type="button" class="btn bg-olive btn-xs" onclick='location.href="all-product-line-edit.html"'>编辑</button>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>2017020200001</td>
-                                        <td>西安3日自由行·超级自由行</td>
-                                        <td>bi'peng0405</td>
-                                        <td>￥500</td>
-                                        <td>已处理(待出团)</td>
-                                        <td class="text-center">
-                                            <button type="button" class="btn bg-olive btn-xs" onclick='location.href="all-product-line-edit.html"'>编辑</button>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>2017020200001</td>
-                                        <td>西安3日自由行·超级自由行</td>
-                                        <td>bi'peng0405</td>
-                                        <td>￥500</td>
-                                        <td>已取消</td>
-                                        <td class="text-center">
-                                            <button type="button" class="btn bg-olive btn-xs" onclick='location.href="all-product-line-edit.html"'>编辑</button>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>2017020200001</td>
-                                        <td>西安3日自由行·超级自由行</td>
-                                        <td>bi'peng0405</td>
-                                        <td>￥500</td>
-                                        <td>已取消</td>
-                                        <td class="text-center">
-                                            <button type="button" class="btn bg-olive btn-xs" onclick='location.href="all-product-line-edit.html"'>编辑</button>
-                                        </td>
-                                    </tr>
+                                   
 
                                 </tbody>
                             </table>
@@ -471,6 +421,43 @@
 
                     </div>
                     <!-- /.box-body -->
+                    
+                    <div class="box-footer">
+                        <div class="pull-left">
+                            <div class="form-group form-inline">
+                                总共2 页，共14 条数据。 每页
+                                <select class="form-control" id="changePageSize" onchange="changePageSize()">
+                           <option>1</option>
+                            <option>3</option>
+                            <option>5</option>
+                            <option>50</option>
+                            <option>80</option>
+                        </select> 条
+                            </div>
+                        </div>
+
+                        <div class="box-tools pull-right">
+                            <ul class="pagination">
+                            
+                            
+                            <li>
+                                    <a href="${pageContext.request.contextPath }/user/findAllByOrder.action?page=1&size=${pageInfo.pageSize}" aria-label="Previous">首页</a>
+                                </li>
+                                <li><a href="${pageContext.request.contextPath }/user/findAllByOrder.action?page=${pageInfo.pageNum-1}&size=${pageInfo.pageSize}">上一页</a></li>
+                                <c:forEach begin="1" end="${pageInfo.pages }" var="pageNum">
+                                	<li><a href="${pageContext.request.contextPath }/user/findAllByOrder.action?page=${pageNum }&size=${pageInfo.pageSize}">${pageNum }</a></li>
+                                </c:forEach>
+                                
+                              
+                                <li><a href="${pageContext.request.contextPath }/user/findAllByOrder.action?page=${pageInfo.pageNum+1}&size=${pageInfo.pageSize}">下一页</a></li>
+                                <li>
+                                    <a href="${pageContext.request.contextPath }/user/findAllByOrder.action?page=${pageInfo.pages}&size=${pageInfo.pageSize}" aria-label="Next">尾页</a>
+                                </li>
+                                
+                            </ul>
+                        </div>
+
+                    </div>
 
                 </div>
                 <!-- 待处理订单 /-->
@@ -542,6 +529,15 @@
     <script src="../plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.js"></script>
     <script src="../plugins/bootstrap-datetimepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
     <script>
+    
+    function changePageSize() {
+		//获取下拉框的值
+		var pageSize = $("#changePageSize").val();
+
+		//向服务器发送请求，改变没页显示条数
+		location.href = "${pageContext.request.contextPath}/user/findAllByOrder.action?page=1&size="
+				+ pageSize;
+	}
         $(document).ready(function() {
             // 选择框
             $(".select2").select2();

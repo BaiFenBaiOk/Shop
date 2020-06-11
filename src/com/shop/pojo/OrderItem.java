@@ -1,14 +1,18 @@
 package com.shop.pojo;
 
 public class OrderItem {
-	private static OrderItem orderItem=new OrderItem();
-	public static OrderItem getOrderItemr() {
+	
+	public OrderItem getOrderItem() {
 		return orderItem;
+	}
+	public void setOrderItem(OrderItem orderItem) {
+		this.orderItem = orderItem;
 	}
 	private String oId;
 	private String gId;
 	private String uId;
 	private Integer count;
+	private OrderItem orderItem;
 	public String getoId() {
 		return oId;
 	}

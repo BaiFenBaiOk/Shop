@@ -5,6 +5,7 @@ import com.shop.mapper.UserMapper;
 import com.shop.pojo.GoodType;
 import com.shop.pojo.Goods;
 import com.shop.pojo.Order;
+import com.shop.pojo.OrderItem;
 import com.shop.pojo.QuervVo;
 import com.shop.pojo.User;
 import com.shop.service.UserService;
@@ -37,24 +38,6 @@ public class UserServiceImpl implements UserService {
 	public void saveActive(String code) {
 		// TODO Auto-generated method stub
 		userMapper.saveActive(code);
-	}
-
-	@Override
-	public List<GoodType> menu() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Goods> goodsList() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Goods getGood(Goods good) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
@@ -161,5 +144,22 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void addGoodNew(Goods good) {
 		userMapper.addGoodNew(good);
+	}
+
+	@Override
+	public List<Order> findAll(int page, int size) {
+		PageHelper.startPage(page, size);
+		List<Order> orders= userMapper.findAllByOrder();
+		for(Order order : orders) {
+			User user = userMapper.findUserByOrder(order.getuId());
+			order.setUser(user);
+			OrderItem orderItem = userMapper.findItemByOrder(order.getoId());
+			order.setOrderItem(orderItem);
+			Goods good = userMapper.findGoodByOrder(order.getOrderItem());
+			order.setGoods(good);
+			GoodType goodType =  userMapper.findGoodTypeByOrder(order.getGoods());
+			order.setGoodType(goodType);
+		}
+		return orders;
 	}
 }
