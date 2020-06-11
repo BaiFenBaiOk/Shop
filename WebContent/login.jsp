@@ -25,7 +25,7 @@
 			<input type="submit" class="logbtn" value="Login">
 			
 			<div class="bottom-text">
-				Don't have a account? <a href="regist.html">Sign up</a>
+				Don't have a account? <a href="${pageContext.request.contextPath }/re.jsp">Sign up</a>
 			</div>
 		</form>
 
