@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+     <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -61,7 +62,13 @@
 
                         <div class="col-md-2 title">商品种类</div>
                         <div class="col-md-4 data">
-                            <input type="text" class="form-control" name="goodId" >
+							 <select name="goodId" class="form-control select2" style="width: 100%;">
+                            
+                            	<c:forEach items="${list}" var="c">
+                            		<option  value="${c.goodId }" ${c.goodId ==goodType.goodId?'selected':''}>${c.goodName }</option>
+                            	</c:forEach>
+		                       
+                   			</select>
 
                         </div>
 

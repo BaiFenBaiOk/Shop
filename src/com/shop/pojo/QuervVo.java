@@ -6,13 +6,15 @@ import java.util.List;
 //包装
 public class QuervVo {
 	private User user;
-	private List<Integer> ids;
+	private List<String> ids;
 
-	public List<Integer> getIds() {
+	
+
+	public List<String> getIds() {
 		return ids;
 	}
 
-	public void setIds(List<Integer> ids) {
+	public void setIds(List<String> ids) {
 		this.ids = ids;
 	}
 

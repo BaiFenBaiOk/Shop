@@ -68,9 +68,10 @@
                                 <td><input type="text" size="10" value="${user.age}" name="age"></td>
                                 <td><input type="text" size="10" value="${user.username}" name="username"></td>
                                 <td>
-                                    <select class="form-control" style="height:28px">
-                                    <option value="女" <c:if test="${user.sex eq '女'}">selected="selected"</c:if> >女</option>
-									<option value="男" <c:if test="${user.sex eq '男'}">selected="selected"</c:if> >男</option>
+                                    <select name="sex" class="form-control" style="height:28px">
+                                    <option value="男" ${user.sex =='男'?'selected':''}>男</option>
+                                    <option  value="女" ${user.sex =='女'?'selected':''}>女</option>
+                                   
                     </select>
                                 </td>
                                 <td><input type="text" size="20" value="${user.iphone}" name="iphone"></td>

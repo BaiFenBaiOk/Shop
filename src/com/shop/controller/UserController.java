@@ -56,8 +56,9 @@ public class UserController {
     }
 
     @RequestMapping("login")
-    public String login(User user,Model model,HttpSession session) throws MyException{
-        User user1 = userService.getLogin(user);
+    public ModelAndView login(User user,Model model,HttpSession session) throws MyException{
+    	ModelAndView mv = new ModelAndView();
+    	User user1 = userService.getLogin(user);
         if(user1 == null){
 			throw new MyException("查无此人~~~");
 			
@@ -67,12 +68,19 @@ public class UserController {
 			if(user1.getType() == 0) {
 				model.addAttribute("user", user1);
 				session.setAttribute("username", user1);
-			return "home";
+				int page=1;
+				int size=4;
+				 List<Order> order = userService.findAll(page, size);
+				 PageInfo pageInfo=new PageInfo(order);
+				    mv.addObject("pageInfo",pageInfo);
+				    mv.setViewName("home");
+				    return mv;
 			}
 			else
-				return "login";
+				throw new MyException("该账户不是管理员~~~");
 		}
     }
+  
     
     @RequestMapping("findAllByOrder")
     public ModelAndView findAllByOrder(@RequestParam(name = "page", required = true, defaultValue = "1") int page, @RequestParam(name = "size", required = true, defaultValue = "4") int size) throws Exception {
@@ -156,10 +164,19 @@ public class UserController {
 		 
     }
     @RequestMapping("edit_userByUid")
-    public String edit_userByUid(User user) throws MyException{
-    	userService.saveUserByUid(user);
+    public ModelAndView edit_userByUid(User user) throws MyException{
     	System.out.println(user.toString());
-		  return "home";
+    	userService.saveUserByUid(user);
+    	 ModelAndView mv = new ModelAndView();
+    	 int page=1;
+    	 int size = 4;
+         List<User> user1 = userService.findAllUsers(page, size);
+         //PageInfo就是一个分页Bean
+         PageInfo pageInfo=new PageInfo(user1);
+         mv.addObject("pageInfo",pageInfo);
+         mv.setViewName("user");
+         return mv;
+
 		 
     }
     
@@ -171,6 +188,7 @@ public class UserController {
     
     @RequestMapping("updataUser")
     public String updataUser(User user,Model model) throws MyException{
+    	System.out.println(user.toString());
     	model.addAttribute("user", user);
     	return "updataUser";
     }
@@ -195,7 +213,7 @@ public class UserController {
     @RequestMapping("findOrderById")
     public String findOrderById(Order order,Model model) throws MyException{
     	Order order1 = userService.findOrderById(order);
-    	System.out.println(order1);
+    	System.out.println(order1.toString());
     	model.addAttribute("order", order1);
 		  return "edit_list";
 		 
@@ -220,9 +238,17 @@ public class UserController {
     }
     
     @RequestMapping("edit_goodTypeByUid")
-    public String edit_goodTypeByUid(GoodType goodType) throws MyException{
+    public ModelAndView edit_goodTypeByUid(GoodType goodType) throws MyException{
     	userService.saveGoodTypeByUid(goodType);
-		  return "home";
+    	 ModelAndView mv = new ModelAndView();
+    	 int page=1;
+    	 int size=4;
+         List<GoodType> goodType1 = userService.findAllGoodType(page, size);
+         //PageInfo就是一个分页Bean
+         PageInfo pageInfo=new PageInfo(goodType1);
+         mv.addObject("pageInfo",pageInfo);
+         mv.setViewName("findAllGoodType");
+         return mv;
 		 
     }
     
@@ -259,17 +285,34 @@ public class UserController {
 		 
     }
     
-    @RequestMapping("edit_goodByUid")
-    public String edit_goodByUid(Goods good) throws MyException{
+    @RequestMapping(value ="edit_goodByUid", method = { RequestMethod.POST, RequestMethod.GET })
+    public ModelAndView edit_goodByUid(Goods good) throws MyException{
     	userService.saveGoodByUid(good);
-		  return "home";
+    	ModelAndView mv = new ModelAndView();
+    	int page=1;int size = 4;
+        List<Goods> goods = userService.findAllGood(page, size);
+        //PageInfo就是一个分页Bean
+        PageInfo pageInfo=new PageInfo(goods);
+        mv.addObject("pageInfo",pageInfo);
+        mv.setViewName("findAllGood");
+        return mv;
+ 
 		 
     }
     @RequestMapping("sendOrderById")
-    public String sendOrderById(Order order) throws MyException{
+    public ModelAndView sendOrderById(Order order) throws MyException{
     	order.setState(1);
     	userService.sendOrderById(order);
-		  return "home";
+
+    	ModelAndView mv = new ModelAndView();
+    	int page=1;int size=4;
+        List<Order> order1 = userService.findAllList(page, size);
+        //PageInfo就是一个分页Bean
+        PageInfo pageInfo=new PageInfo(order1);
+        mv.addObject("pageInfo",pageInfo);
+        mv.setViewName("list");
+        return mv;
+ 
 		 
     }
     @RequestMapping("addGoodType")
@@ -282,11 +325,14 @@ public class UserController {
 		  return "home"; 
     }
     @RequestMapping("addGoods")
-    public String addGoods() throws MyException{
-		  return "addGoods"; 
+    public String addGoods(Model model) throws MyException{
+    	List<GoodType> list = userService.findGoodType();
+    	  model.addAttribute("list", list);
+    	  return "addGoods";
+
     }
     @RequestMapping(value ="addGoodss", method = { RequestMethod.POST, RequestMethod.GET })
-    public String addGoodss(Goods good,MultipartFile pictureFile) throws MyException, Exception{
+    public ModelAndView addGoodss(Goods good,MultipartFile pictureFile) throws MyException, Exception{
     	// 图片新名字
     	String newName = UUID.randomUUID().toString();
     	// 图片原来的名字
@@ -303,33 +349,75 @@ public class UserController {
     	good.setPhoto(newName + sux);
     			
     	userService.addGoodNew(good);
-    	
-    	//userService.addGoodss(good);
-		  return "home";
+
+    	 ModelAndView mv = new ModelAndView();
+    	 int page=1;int size=4;
+
+    	 List<Goods> goods = userService.findAllGood(page, size);
+        //PageInfo就是一个分页Bean
+        PageInfo pageInfo=new PageInfo(goods);
+        mv.addObject("pageInfo",pageInfo);
+        mv.setViewName("findAllGood");
+        return mv;
+ 
+ 
     }
 
     @RequestMapping("delUserByUid")
-    public String delUserByUid(QuervVo Vo) throws MyException{
+    public ModelAndView delUserByUid(QuervVo Vo) throws MyException{
+    	
     	userService.delUserByUid(Vo);
-    	//userService.delUserByUid(good);
-		  return "home";
+
+    	ModelAndView mv = new ModelAndView();
+    	int page=1;int size=4;
+        List<User> user = userService.findAllUsers(page, size);
+        //PageInfo就是一个分页Bean
+        PageInfo pageInfo=new PageInfo(user);
+        mv.addObject("pageInfo",pageInfo);
+        mv.setViewName("user");
+        return mv;
+ 
     }
     @RequestMapping("delGoodTypeByUid")
-    public String delGoodTypeByUid(QuervVo Vo) throws MyException{
+    public ModelAndView delGoodTypeByUid(QuervVo Vo) throws MyException{
     	userService.delGoodTypeByUid(Vo);
-    	//userService.delUserByUid(good);
-		  return "home";
+
+    	 ModelAndView mv = new ModelAndView();
+    	 int page=1;int size=4;
+    	        List<GoodType> goodType = userService.findAllGoodType(page, size);
+    	        //PageInfo就是一个分页Bean
+    	        PageInfo pageInfo=new PageInfo(goodType);
+    	        mv.addObject("pageInfo",pageInfo);
+    	        mv.setViewName("findAllGoodType");
+    	        return mv;
+    	 
     }
     @RequestMapping("delGoodByUid")
-    public String delGoodByUid(QuervVo Vo) throws MyException{
+    public ModelAndView delGoodByUid(QuervVo Vo) throws MyException{
     	userService.delGoodByUid(Vo);
-    	//userService.delUserByUid(good);
-		  return "home";
+
+    	 ModelAndView mv = new ModelAndView();
+    	 int page=1;int size=4;
+    	        List<Goods> goods = userService.findAllGood(page, size);
+    	        //PageInfo就是一个分页Bean
+    	        PageInfo pageInfo=new PageInfo(goods);
+    	        mv.addObject("pageInfo",pageInfo);
+    	        mv.setViewName("findAllGood");
+    	        return mv;
+    	 
     }
     @RequestMapping("delListByUid")
-    public String delListByUid(QuervVo Vo) throws MyException{
+    public ModelAndView delListByUid(QuervVo Vo) throws MyException{
     	userService.delListByUid(Vo);
-    	//userService.delUserByUid(good);
-		  return "home";
+
+ModelAndView mv = new ModelAndView();
+int page=1;int size=4;
+        List<Order> order = userService.findAllList(page, size);
+        //PageInfo就是一个分页Bean
+        PageInfo pageInfo=new PageInfo(order);
+        mv.addObject("pageInfo",pageInfo);
+        mv.setViewName("list");
+        return mv;
+ 
     }
 }

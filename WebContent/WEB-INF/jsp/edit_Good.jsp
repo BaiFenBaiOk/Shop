@@ -63,10 +63,10 @@
                         <div class="col-md-2 title">商品种类</div>
                        
                         <div class="col-md-4 data">
-                            <select class="form-control select2" style="width: 100%;">
+                            <select name="goodId" class="form-control select2" style="width: 100%;">
                             
                             	<c:forEach items="${list}" var="c">
-                            		<option name="goodId" value="${c.goodId }" ${c.goodId ==goodType.goodId?'selected':''}>${c.goodName }</option>
+                            		<option value="${c.goodId }" ${c.goodId ==goodType.goodId?'selected':''}>${c.goodName }</option>
                             	</c:forEach>
 		                       
                    			</select>
@@ -84,7 +84,7 @@
                             <c:if test="${good.photo !=null}">
 							<img src="/pic/${good.photo}" width=90 height=90/>
 							</c:if>
-
+							
                         </div>
 						
                     </div>

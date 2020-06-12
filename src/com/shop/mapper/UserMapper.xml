@@ -244,7 +244,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			  `gname` = #{gName},
 			  `price` = #{price},
 			  `desc` = #{desc},
-			  `photo` = #{photo},
 			  `count` = #{count},
 			  `good_id` = #{goodId}
 			WHERE `gid` = #{gId};

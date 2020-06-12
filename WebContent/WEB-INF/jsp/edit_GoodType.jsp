@@ -45,7 +45,7 @@
                 <!--游客信息-->
                 <form action="${pageContext.request.contextPath }/user/edit_goodTypeByUid.action" method="post" id="edit_goodTypeByUid">
                 <div class="panel panel-default">
-                    <div class="panel-heading">用户信息</div>
+                    <div class="panel-heading">商品信息</div>
                     <!--数据列表-->
                     <table id="dataList" class="table table-bordered table-striped table-hover dataTable">
                         <thead>

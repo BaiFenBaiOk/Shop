@@ -115,7 +115,7 @@
                             <div class="pull-left">
                                 <div class="form-group form-inline">
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-default" title="新建" onclick='location.href="edit_list.html"'><i class="fa fa-file-o"></i> 新建</button>
+                                        <button type="button" class="btn btn-default" title="新建" onclick='location.href="${pageContext.request.contextPath }/user/addGoodType.action"'><i class="fa fa-file-o"></i> 新建</button>
                                         <button type="submit" class="btn btn-default" title="删除" onclick='confirm("你确认要删除吗？")' form="delGoodTypeByUid"><i class="fa fa-trash-o"></i> 删除</button>
                                        
                                         <button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();"><i class="fa fa-refresh"></i> 刷新</button>
