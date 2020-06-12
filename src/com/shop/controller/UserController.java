@@ -48,9 +48,15 @@ public class UserController {
     public String loginUI(User user,Model model) throws MyException{
     	return "login";
     }
+    
+    @RequestMapping("findUserByName")
+    public String findUserByName(User user,Model model) throws MyException{
+    	System.out.println(user.toString());
+    	return "null";
+    }
 
     @RequestMapping("login")
-    public String login(User user,Model model) throws MyException{
+    public String login(User user,Model model,HttpSession session) throws MyException{
         User user1 = userService.getLogin(user);
         if(user1 == null){
 			throw new MyException("查无此人~~~");
@@ -60,7 +66,7 @@ public class UserController {
 		}else{
 			if(user1.getType() == 0) {
 				model.addAttribute("user", user1);
-				
+				session.setAttribute("username", user1);
 			return "home";
 			}
 			else
@@ -128,28 +134,7 @@ public class UserController {
     	return "login";
     }
 
-	/*
-	 * @RequestMapping("homeLoginUser") public String homeLogin(Model model) throws
-	 * MyException{
-	 * 
-	 * //PageHelper.startPage(1, 4); List<User> user = userService.findAllUser();
-	 * for(User user1:user) { System.out.println(user1.toString()); }
-	 * model.addAttribute("user", user); return "user";
-	 * 
-	 * }
-	 */
-    
-	/*
-	 * @RequestMapping("homeLoginUser") public ModelAndView
-	 * homeLogin(@RequestParam(name="page",required = true,defaultValue = "1") int
-	 * page,@RequestParam(name="size",required = true,defaultValue = "4") int size)
-	 * throws MyException{ ModelAndView mv =new ModelAndView(); List<User> user =
-	 * userService.findAllUsers(page,size); PageInfo pageInfo = new
-	 * PageInfo(user,4); mv.addObject("pageInfo",pageInfo); mv.setViewName("user1");
-	 * return mv;
-	 * 
-	 * }
-	 */
+	
    
     @RequestMapping("homeLoginUser")
     public ModelAndView findAll(@RequestParam(name = "page", required = true, defaultValue = "1") int page, @RequestParam(name = "size", required = true, defaultValue = "4") int size) throws Exception {
@@ -158,7 +143,7 @@ public class UserController {
         //PageInfo就是一个分页Bean
         PageInfo pageInfo=new PageInfo(user);
         mv.addObject("pageInfo",pageInfo);
-        mv.setViewName("user1");
+        mv.setViewName("user");
         return mv;
     }
     
@@ -215,15 +200,7 @@ public class UserController {
 		  return "edit_list";
 		 
     }
-    
-	/*
-	 * @RequestMapping("delete_userByUid") public String
-	 * delete_userByUid(@RequestParam("uid") String[] uid) throws MyException{
-	 * String a = Arrays.toString(uid); System.out.println(a); return "e";
-	 * 
-	 * }
-	 */
-    
+  
     @RequestMapping("findAllGoodType")
     public ModelAndView findAllGoodType(@RequestParam(name = "page", required = true, defaultValue = "1") int page, @RequestParam(name = "size", required = true, defaultValue = "4") int size) throws Exception {
         ModelAndView mv = new ModelAndView();
@@ -262,10 +239,7 @@ public class UserController {
 
     @RequestMapping("editGoodById")
     public ModelAndView editGoodById(Goods good,Model model) throws MyException{
-		/*
-		 * Goods goods = userService.findGoodById(good); model.addAttribute("good",
-		 * goods); return "edit_Good";
-		 */
+		
     	Goods goods = userService.findGoodById(good);
     	GoodType goodType = userService.findGoodTypeById(goods);
     	System.out.println(goodType.toString());
@@ -334,12 +308,6 @@ public class UserController {
 		  return "home";
     }
 
-	/*
-	 * @RequestMapping("delUserByUid") public String
-	 * delUserByUid(@RequestParam("uid") String[] uid) throws MyException{ String a
-	 * = Arrays.toString(uid); userService.delUserByUid(a); System.out.println(a);
-	 * //userService.delUserByUid(good); return "home"; }
-	 */
     @RequestMapping("delUserByUid")
     public String delUserByUid(QuervVo Vo) throws MyException{
     	userService.delUserByUid(Vo);
