@@ -354,8 +354,8 @@ public class UserController {
 		// 后缀
 		String sux = oldName.substring(oldName.lastIndexOf("."));
 		// 新建本地文件流
-		File file = new File("D:\\WebWork\\" + newName + sux);
-		// File file = new File("/software/pic" + newName + sux);
+		//File file = new File("D:\\WebWork\\" + newName + sux);
+		File file = new File("/software/pic" + newName + sux);
 		// 写入本地磁盘
 		// FileUtils.copyInputStreamToFile(uploadFile.getInputStream(),newName + sux);
 		pictureFile.transferTo(file);
