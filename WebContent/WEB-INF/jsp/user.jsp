@@ -6,8 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>数据后台管理</title>
-   <script type="text/javascript" src="../js/jquery-1.11.3.min.js"></script>
-<script type="text/javascript" src="../js/seach.js"></script>
+   <script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/js/seach.js"></script>
     
 </head>
 
@@ -67,7 +67,8 @@
                             </div>
                             <div class="box-tools pull-right">
                                 <div class="has-feedback">
-                                    <input type="text" id="finduser" class="form-control input-sm" placeholder="搜索">
+                                    <input type="text" id="username" name="username" class="form-control input-sm" placeholder="搜索">
+                                    <div id="div01" style="position:relative; left : -54px; width: 600px; height: 200px ; border:  1px solid blue; display: none"></div>
                                     <span class="glyphicon glyphicon-search form-control-feedback"></span>
                                 </div>
                             </div>

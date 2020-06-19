@@ -38,13 +38,14 @@
 		<property name="maxUploadSize" value="8388608" />
 	</bean>
 	
-	<mvc:interceptors>
+	<!-- <mvc:interceptors>
 		<mvc:interceptor>
-			<!-- /**拦截所有请求，包括二级以上目录 -->
+			/**拦截所有请求，包括二级以上目录
 			<mvc:mapping path="/**"/>
-			<!-- 配置不拦截目录 -->
+			配置不拦截目录
 			<mvc:exclude-mapping path="/user/**"/>
 			<bean class="com.shop.interceptor.LoginInterceptor" />
+			
 		</mvc:interceptor>
-	</mvc:interceptors>
+	</mvc:interceptors> -->
 </beans>

@@ -6,7 +6,9 @@ import com.shop.pojo.GoodType;
 import com.shop.pojo.Goods;
 import com.shop.pojo.Order;
 import com.shop.pojo.OrderItem;
+import com.shop.pojo.ProviceOfUser;
 import com.shop.pojo.QuervVo;
+import com.shop.pojo.TypeOfAll;
 import com.shop.pojo.User;
 import com.shop.service.UserService;
 
@@ -176,5 +178,23 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<GoodType> findGoodType() {
 		return userMapper.findGoodType();
+	}
+
+	@Override
+	public List<TypeOfAll> findTypeOfAll() {
+		// TODO Auto-generated method stub
+		return userMapper.findTypeOfAll();
+	}
+
+	@Override
+	public List<ProviceOfUser> findProviceOfUser() {
+		// TODO Auto-generated method stub
+		return userMapper.findProviceOfUser();
+	}
+
+	@Override
+	public List<User> findUserByName(User user,int page, int size) {
+		PageHelper.startPage(page, size);
+		return userMapper.findUserByName(user);
 	}
 }

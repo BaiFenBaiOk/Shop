@@ -4,14 +4,24 @@
 	
 })*/
 $(function(){
-	$("#finduser").keyup(function() {
+	$("#username").keyup(function() {
+		
 		//2。 获取输入框的值 
 		//var word = $("#word").val();
 		//this  对应就是执行这个方法的那个对象， $("#word")
 		var username = $(this).val();
-		$.post("/user/findUserByName.action",{username:username} ,function(data , status){
-			
-		});
+
+		if(username == ""){
+			$("#div01").hide();
+		}else{
+			//3. 请求数据。
+			$.post("findUserByName.action",{username:username} ,function(data , status){
+				//alert(data);
+				$("#div01").show();
+				$("#div01").html(data);
+			});
+		}
+		
 	})
 });
 

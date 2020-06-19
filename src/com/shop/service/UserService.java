@@ -5,7 +5,9 @@ import java.util.List;
 import com.shop.pojo.GoodType;
 import com.shop.pojo.Goods;
 import com.shop.pojo.Order;
+import com.shop.pojo.ProviceOfUser;
 import com.shop.pojo.QuervVo;
+import com.shop.pojo.TypeOfAll;
 import com.shop.pojo.User;
 
 public interface UserService {
@@ -45,5 +47,7 @@ public interface UserService {
     void savaUserPwdByUid(User user);
     GoodType findGoodTypeById(Goods goods);
     List<GoodType> findGoodType();
-    
+    List<TypeOfAll> findTypeOfAll();
+    List<ProviceOfUser> findProviceOfUser();
+    List<User> findUserByName(User user,int page,int size);
 }

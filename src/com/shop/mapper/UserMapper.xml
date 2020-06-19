@@ -73,6 +73,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 
 			FROM 
 			`user` 	
+			WHERE TYPE !=0
 	</select>
 	
 	<select id="findUserByUid" parameterType="user" resultType="user">
@@ -101,10 +102,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			`age` = #{age}, 
 			`sex` = #{sex} , 
 			`iphone` = #{iphone} , 
-			`email` = #{email} , 
-			`code` = #{code} , 
-			`state` = #{state} , 
-			`type` = #{type}
+			`email` = #{email} 
 			
 			WHERE
 			`uid` = #{uid} ;
@@ -437,5 +435,34 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			  `good_id` goodId,
 			  `name` goodName
 			FROM `good_type`
+	</select>
+	
+	<select id="findTypeOfAll" resultType="typeofall">
+		SELECT
+		  `type`,
+		  `count`
+		FROM `typeofsall`
+	</select>
+	<select id="findProviceOfUser" resultType="ProviceOfUser">
+		SELECT
+		  `address`,
+		  `count`
+		FROM `provinceofuser`
+	</select>
+	
+	<select id="findUserByName" parameterType="user" resultType="user">
+		SELECT
+		  `uid`,
+		  `username`,
+		  `password`,
+		  `age`,
+		  `sex`,
+		  `iphone`,
+		  `email`,
+		  `code`,
+		  `state`,
+		  `type`
+		FROM `user`
+		WHERE username LIKE '%${username}%'
 	</select>
 </mapper>

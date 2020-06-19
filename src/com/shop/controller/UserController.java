@@ -7,10 +7,13 @@ import com.shop.exception.MyException;
 import com.shop.pojo.GoodType;
 import com.shop.pojo.Goods;
 import com.shop.pojo.Order;
+import com.shop.pojo.ProviceOfUser;
 import com.shop.pojo.QuervVo;
+import com.shop.pojo.TypeOfAll;
 import com.shop.pojo.User;
 import com.shop.service.UserService;
 import com.shop.utils.UUIDUtils;
+
 
 import cn.itcast.mail.Mail;
 import cn.itcast.mail.MailUtils;
@@ -18,15 +21,27 @@ import cn.itcast.mail.MailUtils;
 import java.io.File;
 import java.io.IOException;
 import java.text.MessageFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
 import java.util.UUID;
 
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.net.URI;
+import java.net.URISyntaxException;
+
+
 import javax.mail.MessagingException;
 import javax.mail.Session;
 import javax.servlet.http.HttpSession;
 
+import org.apache.spark.sql.DataFrameReader;
+import org.apache.spark.sql.Dataset;
+import org.apache.spark.sql.SparkSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -44,20 +59,48 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
+	//User user, Model model
 	@RequestMapping("loginUI")
-	public String loginUI(User user, Model model) throws MyException {
+	public String loginUI() throws MyException {
 		return "login";
 	}
 
+	@RequestMapping("KeShiHua")
+	public ModelAndView KeShiHua() throws MyException, IOException, URISyntaxException {
+		ModelAndView mv = new ModelAndView();
+		List<TypeOfAll> t=userService.findTypeOfAll(); 
+		mv.addObject("t", t);
+		mv.setViewName("keshihua");
+		return mv;
+	}
+	@RequestMapping("KeShiHua2")
+	public ModelAndView KeShiHua2() throws MyException, IOException, URISyntaxException {
+		ModelAndView mv = new ModelAndView();
+		List<ProviceOfUser> t=userService.findProviceOfUser(); 
+		mv.addObject("t", t);
+		mv.setViewName("keshihua2");
+		return mv;
+	}
+	
 	@RequestMapping("findUserByName")
-	public String findUserByName(User user, Model model) throws MyException {
-		System.out.println(user.toString());
-		return "null";
+	public ModelAndView findUserByName(User user,@RequestParam(name = "page", required = true, defaultValue = "1") int page,
+			@RequestParam(name = "size", required = true, defaultValue = "4") int size) throws MyException {
+		ModelAndView mv = new ModelAndView();
+		System.out.println(user.getUsername());
+		List<User> list = userService.findUserByName(user,page, size);
+		/*
+		 * mv.addObject("list", list); mv.setViewName("user"); return mv;
+		 */
+		PageInfo pageInfo = new PageInfo(list);
+		mv.addObject("pageInfo", pageInfo);
+		mv.addObject("list", list);
+		mv.setViewName("userlist");
+		return mv;
 	}
 
 	@RequestMapping("login")
-	public ModelAndView login(User user, Model model, HttpSession session) throws MyException {
-		ModelAndView mv = new ModelAndView();
+	public String login(User user, Model model, HttpSession session) throws MyException {
+		//ModelAndView mv = new ModelAndView();
 		User user1 = userService.getLogin(user);
 		if (user1 == null) {
 			throw new MyException("查无此人~~~");
@@ -72,11 +115,12 @@ public class UserController {
 				int size = 4;
 				List<Order> order = userService.findAll(page, size);
 				PageInfo pageInfo = new PageInfo(order);
-				mv.addObject("pageInfo", pageInfo);
-				mv.setViewName("home");
-				return mv;
+				model.addAttribute("pageInfo", pageInfo);
+				//mv.addObject("pageInfo", pageInfo);
+				//mv.setViewName("home");
+				return "home";
 			} else
-				throw new MyException("该账户不是管理员~~~");
+				return "redirect:/cart/"+user.getUid();
 		}
 	}
 
@@ -354,8 +398,8 @@ public class UserController {
 		// 后缀
 		String sux = oldName.substring(oldName.lastIndexOf("."));
 		// 新建本地文件流
-		//File file = new File("D:\\WebWork\\" + newName + sux);
-		File file = new File("/software/pic" + newName + sux);
+		File file = new File("D:\\WebWork\\" + newName + sux);
+		//File file = new File("/software/pic" + newName + sux);
 		// 写入本地磁盘
 		// FileUtils.copyInputStreamToFile(uploadFile.getInputStream(),newName + sux);
 		pictureFile.transferTo(file);
