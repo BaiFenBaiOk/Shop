@@ -140,6 +140,7 @@ public class UserController {
 	public String regist(User user) throws MyException {
 		user.setCode(UUIDUtils.getId());
 		user.setState("0");
+		user.setType(1);
 		userService.saveUser(user);
 
 		// 发激活邮件，准备配置文件email_template.properties

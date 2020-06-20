@@ -45,8 +45,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			#{code}, 
 			#{state}, 
 			#{type}
-			);
-				
+			);		
 	</insert>
 	
 	<update id="saveActive" parameterType="string">
