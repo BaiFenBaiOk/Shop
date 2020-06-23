@@ -82,7 +82,8 @@
                          <div class="col-md-2 title rowHeight2x">商品照片</div>
                         <div class="col-md-4">
                             <c:if test="${good.photo !=null}">
-							<img src="/pic/${good.photo}" width=90 height=90/>
+							<%-- <img src="/pic/${good.photo}" width=90 height=90/> --%>
+							<img src="${good.photo}" width=90 height=90/>
 							</c:if>
 							
                         </div>

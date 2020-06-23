@@ -42,6 +42,11 @@ import javax.servlet.http.HttpSession;
 import org.apache.spark.sql.DataFrameReader;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.SparkSession;
+import org.csource.fastdfs.ClientGlobal;
+import org.csource.fastdfs.StorageClient;
+import org.csource.fastdfs.StorageServer;
+import org.csource.fastdfs.TrackerClient;
+import org.csource.fastdfs.TrackerServer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -120,7 +125,7 @@ public class UserController {
 				//mv.setViewName("home");
 				return "home";
 			} else
-				return "redirect:/cart/"+user.getUid();
+				return "redirect:/index/"+user.getUid();
 		}
 	}
 
@@ -398,15 +403,37 @@ public class UserController {
 		String oldName = pictureFile.getOriginalFilename();
 		// 后缀
 		String sux = oldName.substring(oldName.lastIndexOf("."));
+		
+
+        Properties properties = new Properties();
+		// 1. 加载tracker配置文件
+		ClientGlobal.init("client.conf");
+
+		// 2. 创建TrackerClient
+		TrackerClient trackerClient = new TrackerClient();
+
+		// 3. 获取TrackerServer
+		TrackerServer trackerServer = trackerClient.getConnection();
+
+		// 4. 声明StorageServer，为null
+		StorageServer storageServer = null;
+
+		// 5. 创建StorageClient
+		StorageClient storageClient = new StorageClient(trackerServer, storageServer);
+		
+		String[] str =storageClient.upload_file(pictureFile.getBytes(),sux, null);
+		
+		String picUrl = "http://112.125.89.42/"+str[0] + "/" + str[1];
+		good.setPhoto(picUrl);
 		// 新建本地文件流
-		File file = new File("D:\\WebWork\\" + newName + sux);
+		//File file = new File("D:\\WebWork\\" + newName + sux);
 		//File file = new File("/software/pic" + newName + sux);
 		// 写入本地磁盘
-		// FileUtils.copyInputStreamToFile(uploadFile.getInputStream(),newName + sux);
-		pictureFile.transferTo(file);
+		//FileUtils.copyInputStreamToFile(uploadFile.getInputStream(),newName + sux);
+		//pictureFile.transferTo(file);
 
 		// 保存图片到数据库
-		good.setPhoto(newName + sux);
+		//good.setPhoto(newName + sux);
 
 		userService.addGoodNew(good);
 

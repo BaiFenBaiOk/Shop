@@ -37,7 +37,7 @@
 		<!-- 最大上传文件大小 -->
 		<property name="maxUploadSize" value="8388608" />
 	</bean>
-	
+
 	<!-- <mvc:interceptors>
 		<mvc:interceptor>
 			/**拦截所有请求，包括二级以上目录
